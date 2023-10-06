@@ -1,10 +1,11 @@
-import {ComponentSlider} from './components/slider/slider'
+import HomePage from "./pages/homePage"
+
 
 
 function App() {
   return (
     <>
-      <ComponentSlider/>
+      <HomePage/>
     </>
   )
 }
