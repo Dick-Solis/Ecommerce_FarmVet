@@ -18,8 +18,7 @@ function HomePage(){
   return (
     <StyledMain>
       <ComponentSlider/>
-      {/* <SectionPets/> */}
-      {/* <SectionMap/> */}
+      
     </StyledMain>
   )
 }
