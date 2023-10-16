@@ -99,9 +99,9 @@ export function ComponentSlider() {
         </StyledBorder>
 
         <SectionDescription>
-          <StyledTitle>lo mejor  para tu mejor amigo</StyledTitle>
+          <StyledTitle>lo mejor  para <br/> tu mejor amigo</StyledTitle>
           <StyledDivisor/>
-          <StyledDescription>Somos una empresa especializada en la venta y servicio de productos veterinarios y equipos bioseguros.</StyledDescription>
+          <StyledDescription>Salud y Nutrición Animal</StyledDescription>
         </SectionDescription>
       </ContainerDescription>
       <ComponentNavbar />
