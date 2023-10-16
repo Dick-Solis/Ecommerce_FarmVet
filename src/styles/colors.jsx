@@ -73,4 +73,5 @@ export const colors = {
   newYellow: "#F2C94C",
   white: "#FFFFFF",
   background: "#E5E5E5",
+  primary: "#0090e6"
 };

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from "react";
 import {
-  FaBattleNet,
   FaBars,
   FaTimes,
   FaHome,
@@ -11,13 +10,15 @@ import {
 } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { NavLink } from 'react-router-dom';
-// import logoVivero from '../../assets/MUNDO-VERDE-01.png'
+import logoVeterinaria from '../../assets/LOGO-01.png'
+import { colors } from '../../styles/colors';
+import {MdEmail} from 'react-icons/md'
 
 //#region Styled Component
 const Container = styled.header`
   width: 100%;
   /* height: 70px; */
-  background: rgba(255, 255, 255, 0.9);
+  background: #0071E1;
   padding: 5px;
   z-index: 1000;
   position: fixed;
@@ -64,10 +65,10 @@ const Menu = styled.ul`
   gap: 0 60px;
   @media (max-width: 960px) {
     /* background-color: #0d586f; */
-    background: rgba(255, 255, 255, 0.9);
+    background: ${colors.primary};
     position: absolute;
     z-index: 10;
-    top: 90px;
+    top: 60px;
     left: ${({ open }) => (open ? "0" : "-100%")}; //Import
     width: 100%;
     height: 90vh;
@@ -98,15 +99,15 @@ const MenuItemLink = styled(NavLink)`
   height: 100%;
   font-size: 1rem;
   cursor: pointer;
-  color: black;
+  color: #ffffff;
   transition: 0.3s ease-in-out;
-  font-family: "Caveat";
+  /* font-family: "Caveat"; */
   &:hover {
-    color: #6FAE99;
+    color: #024a6f;
     text-decoration: none;
     div {
       svg {
-        fill: #23394d;
+        fill: #024a6f;
       }
     }
 }
@@ -120,7 +121,7 @@ div {
   font-weight:bold;
   svg {
     display: none;
-    fill: #000000;
+    fill: #ffffff;
     margin-right: 0.5rem;
   }
 }
@@ -144,20 +145,20 @@ const MobileIcon = styled.div`
     align-items: center;
     cursor: pointer;
     svg {
-      fill: black;
+      fill: #ffffff;
       margin-right: 0.5rem;
     }
 }
 `;
 
   const StyledLogo = styled.img`
-    width: 235px;
-    height: 80px;
+    width: 150px;
+    height: 50px;
   `;
 
 //#endregion
 
-export function ComponentNavbar() {
+export function ComponentNavbarHeader() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   
   return (
@@ -165,7 +166,7 @@ export function ComponentNavbar() {
       <Wrapper>
         <IconContext.Provider value={{ style: { fontSize: "2em" } }}>
           <LogoContainer>
-            <StyledLogo  alt="" />
+            <StyledLogo src={logoVeterinaria} alt="" />
           </LogoContainer>
 
           <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)}>
@@ -185,7 +186,7 @@ export function ComponentNavbar() {
               <MenuItemLink  to="/plantas" onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <div>
                   <FaUserAlt />
-                  PLANTAS
+                  INICIAR SESIÓN
                 </div>
               </MenuItemLink>
             </MenuItem>
@@ -193,14 +194,14 @@ export function ComponentNavbar() {
               <MenuItemLink to="/servicios" onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <div>
                   <FaMapMarkerAlt />
-                  SERVICIOS
+                  UBÍCANOS
                 </div>
               </MenuItemLink>
             </MenuItem>
             <MenuItem>
               <MenuItemLink to="/contact" onClick={() => setShowMobileMenu(!showMobileMenu)}>
                 <div>
-                  <FaGlasses />
+                  <MdEmail />
                   CONTÁCTANOS
                 </div>
               </MenuItemLink>

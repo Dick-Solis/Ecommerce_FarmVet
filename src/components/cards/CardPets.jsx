@@ -6,12 +6,14 @@ const ContainerCard = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    width: 250px;
+    width: 255px;
     padding: 5px;
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
   `;
 
 const StyledImage = styled.img`
+    width: 250px;
+    height: 250px;
     background-color: #EAD3C1;
     border-radius: 15px 15px 0 0;
   `;
@@ -31,13 +33,15 @@ const ContainerHeart = styled.div`
   display: flex;
   justify-content: flex-end;
   top:-30px;
+  right: -15px;
 `;
 
 const StyledTitle = styled.h2`
   text-align: center;
 `;
 
-const StyledDescription = styled.p`
+const StyledDescription = styled.h5`
+  width: 100%;
   text-align: center;
 `;
 //#endregion

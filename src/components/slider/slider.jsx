@@ -1,30 +1,110 @@
 import styled from '@emotion/styled';
-import fondoSlider from '../../assets/fondoVet.jpg'
-import { ComponentNavbarHeader } from '../navbar/navbarHeader';
+import { ComponentNavbar } from '../navbar/navbarHeader';
+import ImagePortada from '../../assets/perrito.png';
 
 //#region
-  const ContainerSlider = styled.div`
-    padding: 10px 120px;
-    @media(max-width:768px){
-      padding: 10px 20px;
-    }
+const ContainerSlider = styled.div`
+    padding: 70px 5px;
+    color: #ffffff;
   `;
 
-  const StyledImage = styled.img`
-    border-radius: 20px;
-    width: 100%;
-    height: 550px;
+const StyledImage = styled.img`
     @media(max-width:768px){
       height: 100%;
     }
   `;
+
+const SectionImage = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0071e1;
+    border-radius: 50%;
+    width: 650px;
+    height: 100vh;
+    @media(max-width: 768px){
+      width: auto;
+      height: auto;
+    }
+  `;
+
+const StyledBorder = styled.div`
+    border: 12px double #0071e1 ;
+    border-radius: 50%;
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+    @media(max-width: 768px){
+      width: auto;
+      height: auto;
+    }
+  `;
+
+const ContainerDescription = styled.div`
+    display: flex;
+    gap:20px;
+    @media(max-width: 1000px){
+      flex-direction: column-reverse
+    }
+  `;
+
+const SectionDescription = styled.section`
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    @media(max-width: 768px){
+      align-items: flex-start;
+    }
+  `;
+
+const StyledTitle = styled.h2`
+  font-family: "Bebas Neue";
+  font-weight: 900;
+  line-height: 80px;
+  font-size: 100px;
+  text-transform: uppercase;
+  @media(max-width:768px){
+    font-size: 80px;
+    line-height: 80px;
+  }
+`;
+
+const StyledDivisor = styled.hr`
+  height: 4px;
+  color: #ffffff;
+  background-color: #ffffff;
+  border:none;
+  width: 70%;
+`;
+
+const StyledDescription = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+  @media(max-width:1000px){
+    font-size: 15px;
+  }
+`;
 //#endregion
 
-export function ComponentSlider(){
-  return(
+export function ComponentSlider() {
+  return (
     <ContainerSlider>
-      <StyledImage src={fondoSlider}/>
-      <ComponentNavbarHeader/>
+      <ContainerDescription>
+        <StyledBorder>
+          <SectionImage>
+            <StyledImage src={ImagePortada} alt="" />
+          </SectionImage>
+        </StyledBorder>
+
+        <SectionDescription>
+          <StyledTitle>lo mejor  para tu mejor amigo</StyledTitle>
+          <StyledDivisor/>
+          <StyledDescription>Somos una empresa especializada en la venta y servicio de productos veterinarios y equipos bioseguros.</StyledDescription>
+        </SectionDescription>
+      </ContainerDescription>
+      <ComponentNavbar />
     </ContainerSlider>
   )
 }

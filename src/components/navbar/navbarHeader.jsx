@@ -32,7 +32,7 @@ const Container = styled.div`
 
 const ButtonStyled = styled.button`
     border: none;
-    background-color: #000000;
+    background-color: #0071E1;
     color: #ffffff;
     font-weight: bold;  
     border-radius: 5px; 
@@ -55,7 +55,7 @@ const MenuItemLink = styled(NavLink)`
   height: 100%;
   font-size: 1.1rem;
   cursor: pointer;
-  color: black;
+  color: #000000;
   transition: 0.3s ease-in-out;
   @media(max-width:400px){
     font-size: 12px;
@@ -75,7 +75,7 @@ const MenuItemLink = styled(NavLink)`
 
 //#endregion
 
-export function ComponentNavbarHeader() {
+export function ComponentNavbar() {
   return (
     <NavStyled>
       <Container>
