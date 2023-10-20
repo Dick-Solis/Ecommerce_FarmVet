@@ -89,6 +89,7 @@ export function ComponentNavbar() {
           <li><MenuItemLink>Comidas</MenuItemLink></li>
           <li><MenuItemLink>Accesorios</MenuItemLink></li>
           <li><MenuItemLink>Marcas</MenuItemLink></li>
+          <li><MenuItemLink>Medicamentos</MenuItemLink></li>
           <li><MenuItemLink>Ofertas</MenuItemLink></li>
         </StyledList>
       </Container>

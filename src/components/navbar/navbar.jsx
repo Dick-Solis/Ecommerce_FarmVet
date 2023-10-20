@@ -4,15 +4,14 @@ import {
   FaBars,
   FaTimes,
   FaHome,
-  FaUserAlt,
   FaMapMarkerAlt,
-  FaGlasses,
 } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { NavLink } from 'react-router-dom';
 import logoVeterinaria from '../../assets/LOGO-01.png'
 import { colors } from '../../styles/colors';
-import {MdEmail} from 'react-icons/md'
+import { MdEmail } from 'react-icons/md'
+import { IoLogoWhatsapp } from 'react-icons/io';
 
 //#region Styled Component
 const Container = styled.header`
@@ -41,10 +40,10 @@ const LogoContainer = styled.div`
   align-items: center;
   font-size: 1.2rem;
   p {
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       /* color: #fff; */
     }
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       font-size: 1.5rem;
       font-weight: 500;
       /* color: #ffffff; */
@@ -61,6 +60,7 @@ const Menu = styled.ul`
   display: flex;
   gap: 20px;
   justify-content: space-between;
+  align-items: center;
   list-style: none;
   gap: 0 60px;
   @media (max-width: 960px) {
@@ -151,16 +151,50 @@ const MobileIcon = styled.div`
 }
 `;
 
-  const StyledLogo = styled.img`
+const StyledLogo = styled.img`
     width: 150px;
     height: 50px;
   `;
 
+const ContentButtonInter = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  `;
+
+const StyledButton = styled.button`
+    background-color: transparent;
+    border: 3px solid #0cb900;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  `;
 //#endregion
 
 export function ComponentNavbarHeader() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  
+
+  function pageWhatssap(){
+    window.location.href = 'https://wa.link/kp4x93';
+  }
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -183,28 +217,20 @@ export function ComponentNavbarHeader() {
               </MenuItemLink>
             </MenuItem>
             <MenuItem>
-              <MenuItemLink  to="/plantas" onClick={() => setShowMobileMenu(!showMobileMenu)}>
-                <div>
-                  <FaUserAlt />
-                  INICIAR SESIÓN
-                </div>
-              </MenuItemLink>
-            </MenuItem>
-            <MenuItem>
-              <MenuItemLink to="/servicios" onClick={() => setShowMobileMenu(!showMobileMenu)}>
-                <div>
-                  <FaMapMarkerAlt />
-                  UBÍCANOS
-                </div>
-              </MenuItemLink>
-            </MenuItem>
-            <MenuItem>
-              <MenuItemLink to="/contact" onClick={() => setShowMobileMenu(!showMobileMenu)}>
+              <MenuItemLink onClick={() => {
+                setShowMobileMenu(!showMobileMenu)
+                scrollToSection('contact')
+                }}>
                 <div>
                   <MdEmail />
                   CONTÁCTANOS
                 </div>
               </MenuItemLink>
+            </MenuItem>
+            <MenuItem>
+              <ContentButtonInter>
+                <StyledButton onClick={pageWhatssap}><IoLogoWhatsapp />Whatssap</StyledButton>
+              </ContentButtonInter>
             </MenuItem>
           </Menu>
         </IconContext.Provider>

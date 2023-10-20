@@ -2,11 +2,8 @@
 import { css } from "@emotion/react";
 import { colors } from "./colors";
 import { fonts } from "./typography";
-import fondoVet from '../assets/VETERINARIA.png'
 
 export const reset = css`
-  @import url('https://fonts.googleapis.com/css2?family=Itim&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cedarville+Cursive&family=Sacramento&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
   /* Box sizing rules */
   *,
