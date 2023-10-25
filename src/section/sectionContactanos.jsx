@@ -4,6 +4,8 @@ import calendar from '../assets/calendar.svg';
 import phone from '../assets/phone.svg';
 import ubication from '../assets/ubication.svg';
 import { DescriptionSection, TitleSection } from '../components/Texts/text';
+import SectionMap from './sectionMap';
+
 
 //#region
 const ContainerContact = styled.section`
@@ -29,13 +31,14 @@ const StyledDescription = styled.div`
     color: #0071e1;
   `;
 
-const ContentTitles = styled.p``;
+const ContentTitles = styled.div``;
 //#endregion
 
 function SectionCardContacts() {
   return (
     <ContainerContact id='contact'>
       <ContentTitles>
+        <TitleSection>Contáctanos</TitleSection>
       </ContentTitles>
       <ContainerCardContact>
         <CardContact image={calendar}>
@@ -51,6 +54,7 @@ function SectionCardContacts() {
           <StyledDescription>Jirón Abtao #443</StyledDescription>
         </CardContact>
       </ContainerCardContact>
+      <SectionMap/>
     </ContainerContact>
   )
 }

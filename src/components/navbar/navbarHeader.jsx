@@ -57,7 +57,7 @@ const MenuItemLink = styled(NavLink)`
   cursor: pointer;
   color: #000000;
   transition: 0.3s ease-in-out;
-  @media(max-width:400px){
+  @media(max-width:500px){
     font-size: 12px;
   }
 
@@ -76,6 +76,16 @@ const MenuItemLink = styled(NavLink)`
 //#endregion
 
 export function ComponentNavbar() {
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
   return (
     <NavStyled>
       <Container>
@@ -88,7 +98,9 @@ export function ComponentNavbar() {
         <StyledList>
           <li><MenuItemLink>Comidas</MenuItemLink></li>
           <li><MenuItemLink>Accesorios</MenuItemLink></li>
-          <li><MenuItemLink>Marcas</MenuItemLink></li>
+          <li><MenuItemLink onClick={()=>scrollToSection('marcas')}>
+            Marcas
+          </MenuItemLink></li>
           <li><MenuItemLink>Medicamentos</MenuItemLink></li>
           <li><MenuItemLink>Ofertas</MenuItemLink></li>
         </StyledList>

@@ -17,6 +17,10 @@ const ContainerShopping = styled.div`
     background-color: #ffffff;
     padding-left: 10px;
     color: #0071e1;
+    /* @media(max-width: 768px) {
+      left: 10px; 
+      bottom: 50px;
+    } */
   `;
 
   const StyledCount = styled.p`

@@ -79,7 +79,7 @@ export const global = css`
   body {
     background-color: #3bb5fc;
     font-size: 1rem;
-    font-family: ${fonts.primary};
+    font-family: 'Playpen Sans';
     color: ${colors.gray.dark};
     font-weight: 400;
   }
