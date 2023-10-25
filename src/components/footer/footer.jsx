@@ -18,7 +18,7 @@ import { TextSection, TitleSectionFooter } from '../Texts/text';
   const SectionFooter = styled.section`
     display: flex;
     flex-direction: column;
-    :nth-child(3){
+    :nth-of-type(3){
       width: 300px;
     }
     

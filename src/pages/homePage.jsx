@@ -8,6 +8,7 @@ import { SectionProducts } from "../section/sectionProducts";
 import SectionCardContacts from "../section/sectionContactanos";
 import { TitleSection } from "../components/Texts/text";
 import { ComponentFooter } from "../components/footer/footer";
+import { ShoppingCart } from "../components/shopping/shoppingCart";
 
 //#region
  const StyledMain = styled.main`
@@ -25,6 +26,7 @@ function HomePage(){
       <SectionCardContacts/>
       <SectionProducts/>
       <ComponentFooter/>
+      <ShoppingCart/>
     </StyledMain>
   )
 }
