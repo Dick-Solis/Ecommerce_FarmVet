@@ -5,6 +5,7 @@ import { fonts } from "./typography";
 
 export const reset = css`
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playpen+Sans:wght@100;700&display=swap');
   /* Box sizing rules */
   *,
   *::before,

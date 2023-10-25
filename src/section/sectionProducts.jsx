@@ -7,9 +7,7 @@ import { CardProduct } from '../components/cards/cardProduct';
 export function SectionProducts(){
   return(
     <div>
-      <CardProduct>
-        <p>Hellooooo</p>
-      </CardProduct> 
+      {/* <CardProduct/> */}
     </div>
   )
 }
