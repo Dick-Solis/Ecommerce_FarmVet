@@ -67,7 +67,7 @@ const PriceDescount = styled.p`
 const Price = styled.p`
   color: #0071E1;
   font-weight: bold;
-  font-size: 13px;
+  /* font-size: 13px; */
 `;
 
 const StyledButton = styled.button`
@@ -82,7 +82,8 @@ const StyledButton = styled.button`
 `
 //#endregion
 
-export function CardProduct() {
+export function CardProduct({...props}) {
+  const product = props.product;
   const StyledStarCalificated = {
     color: 'gold',
     fontSize: '24px',
@@ -107,22 +108,22 @@ export function CardProduct() {
   return (
     <CardContainer>
       <ContentHeader>
-        <StyledDescount>50%</StyledDescount>
+        {/* <StyledDescount>50%</StyledDescount> */}
         <StyledHeart />
       </ContentHeader>
-      <StyledImage src={imgPrueba} alt="" />
-      <StyledTitleProduct>Hamster</StyledTitleProduct>
-      <ContentStars>
+      <StyledImage src={product.imagen} alt={product.nombre}  />
+      <StyledTitleProduct>{product.nombre}</StyledTitleProduct>
+      {/* <ContentStars>
         {starIcons}{additionalIcons}
-      </ContentStars>
+      </ContentStars> */}
 
       {/* <p>S/.{precio * (desceunto/100)}<s>Hello</s></p>  */}
       <ContentPrice>
-        <PriceDescount>S/5.00</PriceDescount>
-        <Price><s>S/2.00</s></Price>
+        <Price>S/2.00</Price>
+        <PriceDescount><s>S/{product.precio}.00</s></PriceDescount>
       </ContentPrice>
 
-      <StyledButton>Comprar</StyledButton>
+      <StyledButton onClick={props.onClick}>Comprar</StyledButton>
     </CardContainer>
   )
 }

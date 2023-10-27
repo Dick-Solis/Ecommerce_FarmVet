@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { FaShoppingBag } from 'react-icons/fa';
+import { useCart } from "../../context/cartContext";
 
 //#region
 const ContainerShopping = styled.div`
@@ -43,10 +44,11 @@ const ContainerShopping = styled.div`
 //#endregion
 
 export function ShoppingCart() {
+  const {cartItems} = useCart();
   return (
     <ContainerShopping>
       <FaShoppingBag/>
-      <StyledCount>0</StyledCount>
+      <StyledCount>{cartItems}</StyledCount>
     </ContainerShopping>
   )
 }

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { CardProduct } from '../components/cards/cardProduct';
 import { TitleSection } from '../components/Texts/text';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { showAllProducts } from '../services/productService';
-
+import { useCart } from '../context/cartContext';
 //#region
 const ContainerCards = styled.div`
     display: flex;
@@ -50,21 +50,50 @@ const ContainerScrolling = styled.div`
 //#endregion
 
 export function SectionProducts() {
-  const [dataProducts, setDataProducts] = useState([]);
 
-  useEffect(()=>{
+  const [dataProducts, setDataProducts] = useState([]);
+  const initialCart = JSON.parse(localStorage.getItem('dataProductsCart')) || [];
+  const [productsCart, setProductsCart] = useState(initialCart);
+  let { setCartItems } = useCart();
+
+  useEffect(() => {
+    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
     showAllProducts()
     .then((response)=>setDataProducts(response.data));
-  },[])
+  }, [productsCart]);
 
   const content = document.querySelector(".scrolling-container");
+
   function ButtonLeft() {
     content.scrollLeft -= 800;
   };
 
   function ButtonRight() {
     content.scrollLeft += 800;
-  };  
+  };
+
+
+  function addProductCart(initialCart) {
+    const updatedCart = [...productsCart];
+    const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
+
+    if (existingProductIndex !== -1) {
+      updatedCart[existingProductIndex].cantidad += 1;
+    } else
+      updatedCart.push({
+        id_producto: initialCart.id_producto,
+        cantidad: 1,
+        nameProduct: initialCart.nombre,
+        imagen: initialCart.imagen,
+        precio: parseInt(initialCart.precio),
+        descuento: parseInt(initialCart.descuento),
+      });
+    setProductsCart(updatedCart);
+    // setCartItems(TotalProductCart);
+    const TotalProductCart = initialCart.reduce((total, objeto) => total + objeto.cantidad, 0);
+    console.log(TotalProductCart);
+  }
+
 
   return (
     <ContainerCards>
@@ -75,21 +104,13 @@ export function SectionProducts() {
       </ContainerHeader>
 
       <ContainerScrolling className='scrolling-container'>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
-        <CardProduct/>
+        {dataProducts.map(product => (
+          <CardProduct key={product.id_producto}
+            product={product}
+            onClick={() => {
+              addProductCart(product)
+            }} />
+        ))}
       </ContainerScrolling>
     </ContainerCards>
   )
