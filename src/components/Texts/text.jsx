@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 //#region
   const StyledTitle = styled.h2`
-    width: 100%;
     font-family: 'Playpen Sans';
     color: #ffffff;
     text-align: center;

@@ -18,13 +18,16 @@ export const reset = css`
   h2,
   h3,
   h4,
+  h5,
+  h6,
   p,
   figure,
   blockquote,
   dl,
   ul,
   li,
-  dd {
+  dd,
+  hr {
     margin: 0;
   }
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */

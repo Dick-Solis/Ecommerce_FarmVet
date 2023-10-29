@@ -1,7 +1,7 @@
 import { ComponentNavbarHeader } from "./components/navbar/navbar"
-import HomePage from "./pages/homePage"
 import styled from "@emotion/styled";
 import ImageContent from './assets/VETERINARIA.png';
+import { MyRoutes } from "./routes/routes";
 
 const ContainerApp = styled.main`
   background-image: url(${ImageContent});
@@ -15,7 +15,7 @@ function App() {
   return (
     <ContainerApp>
       <ComponentNavbarHeader />
-      <HomePage />
+      <MyRoutes/>
     </ContainerApp>
   )
 }

@@ -181,15 +181,16 @@ const StyledButton = styled.button`
 export function ComponentNavbarHeader() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  function pageWhatssap(){
+  function pageWhatssap() {
     window.location.href = 'https://wa.link/kp4x93';
   }
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
+      const offset = -15; 
       window.scrollTo({
-        top: section.offsetTop,
+        top: section.getBoundingClientRect().top + window.scrollY - offset,
         behavior: 'smooth',
       });
     }
@@ -217,10 +218,10 @@ export function ComponentNavbarHeader() {
               </MenuItemLink>
             </MenuItem>
             <MenuItem>
-              <MenuItemLink onClick={() => {
+              <MenuItemLink to="/" onClick={() => {
                 setShowMobileMenu(!showMobileMenu)
                 scrollToSection('contact')
-                }}>
+              }}>
                 <div>
                   <MdEmail />
                   CONTÁCTANOS

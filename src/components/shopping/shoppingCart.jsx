@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { FaShoppingBag } from 'react-icons/fa';
 import { useCart } from "../../context/cartContext";
+import { NavLink } from "react-router-dom";
 
 //#region
 const ContainerShopping = styled.div`
@@ -12,32 +13,29 @@ const ContainerShopping = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
-    background-color: #ffffff;
+    width: 80px;
+    height: 80px;
+    font-size: 70px;
+    background-color: #008fdc;
     padding-left: 10px;
-    color: #0071e1;
-    /* @media(max-width: 768px) {
-      left: 10px; 
-      bottom: 50px;
-    } */
+    color: #0e4967;
+    cursor: pointer;
   `;
 
   const StyledCount = styled.p`
-    font-size: 15px;
+    font-size:20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: relative;
     font-weight: bold;
-    padding: 5px;
+    padding: 7px;
     border-radius: 50%;
     top: -10px;
     left: -10px;
-    background-color: #0071e1;
+    background-color: #0e4967;
     color: #ffffff;
     z-index: 12;
   `;
@@ -45,8 +43,13 @@ const ContainerShopping = styled.div`
 
 export function ShoppingCart() {
   const {cartItems} = useCart();
+
+  const handleDivClick = () => {
+    window.location.href = '/cartShopping';
+  };
+
   return (
-    <ContainerShopping>
+    <ContainerShopping onClick={handleDivClick}>
       <FaShoppingBag/>
       <StyledCount>{cartItems}</StyledCount>
     </ContainerShopping>

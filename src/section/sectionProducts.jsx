@@ -57,7 +57,9 @@ export function SectionProducts() {
   let { setCartItems } = useCart();
 
   useEffect(() => {
-    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
+    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));        
+    const TotalRefreshCart = JSON.parse(localStorage.getItem('dataProductsCart'));
+    setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
     showAllProducts()
     .then((response)=>setDataProducts(response.data));
   }, [productsCart]);
@@ -76,7 +78,7 @@ export function SectionProducts() {
   function addProductCart(initialCart) {
     const updatedCart = [...productsCart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
-
+    console.log(updatedCart);
     if (existingProductIndex !== -1) {
       updatedCart[existingProductIndex].cantidad += 1;
     } else
@@ -88,10 +90,11 @@ export function SectionProducts() {
         precio: parseInt(initialCart.precio),
         descuento: parseInt(initialCart.descuento),
       });
+
+    console.log(updatedCart);
     setProductsCart(updatedCart);
-    // setCartItems(TotalProductCart);
-    const TotalProductCart = initialCart.reduce((total, objeto) => total + objeto.cantidad, 0);
-    console.log(TotalProductCart);
+    const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
+    setCartItems(TotalProductCart);
   }
 
 
@@ -109,7 +112,7 @@ export function SectionProducts() {
             product={product}
             onClick={() => {
               addProductCart(product)
-            }} />
+            }}/>
         ))}
       </ContainerScrolling>
     </ContainerCards>
