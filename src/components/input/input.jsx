@@ -58,6 +58,7 @@ export function ComponentInput({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        required
       />
       <StyledErrors>{errors}</StyledErrors>
     </DivInput>

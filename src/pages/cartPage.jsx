@@ -4,13 +4,14 @@ import { TitleSection } from "../components/Texts/text";
 import { useState, useEffect } from "react";
 import { SectionCartProduct } from "../section/sectionCartProduct";
 import { ComponentFooter } from "../components/footer/footer";
+import { NavLink } from "react-router-dom";
 //#region
   const ContainerPage = styled.main`
     height: 100vh;
   `;
 
   const StyldHeader = styled.header`
-    padding: 70px 0 0 0;
+    padding: 80px 20px 0 20px;
     display: flex;
     justify-content: space-between;
   `;
@@ -34,13 +35,18 @@ import { ComponentFooter } from "../components/footer/footer";
     display: flex;
     margin-top: 20px;
     margin-bottom: 40px;
+    height: 700px;
   `;
 
+  const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+  `;
 //#endregion
 
 export function CartPage(){
   let dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
   const [productsCart, setProductsCart] = useState(dataProducts);
+  const [handleSection, setHandleSection] = useState(0);
 
   useEffect(() => {
     dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
@@ -48,23 +54,41 @@ export function CartPage(){
   }, [productsCart]);
 
 
+  function Section(){
+    switch(handleSection) {
+      case 0:
+        return(
+        <SectionCartProduct 
+          setProductsCart={setProductsCart}
+          productsCart={productsCart}
+          setHandleSection={setHandleSection}
+        />
+        )
+      case 1:
+        return(
+          <h2>Holllllaaaaaaaaaaaaaaaaaa</h2>
+        )
+      default:
+        break;
+    }
+  }
+
   return(
   <ContainerPage>
     <StyldHeader>
       <TitleSection>
         Carrito de Compras
       </TitleSection>
-      <StyledButton>
-        <BiArrowBack/>
-        Seguir Comprando
-      </StyledButton>
+      <StyledNavLink to='/'>
+        <StyledButton>
+          <BiArrowBack/>
+          Seguir Comprando
+        </StyledButton>
+      </StyledNavLink>
     </StyldHeader>
     {/* <WidgetShoppingCart/> */}
     <ContainerCart>
-      <SectionCartProduct 
-        setProductsCart={setProductsCart}
-        productsCart={productsCart}
-        />
+      {Section()}
     </ContainerCart>
     <ComponentFooter/>
   </ContainerPage>

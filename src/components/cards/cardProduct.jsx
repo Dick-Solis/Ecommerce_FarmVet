@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import imgPrueba from '../../assets/hamster.png';
 import { BsFillStarFill } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
 
@@ -116,11 +115,10 @@ export function CardProduct({...props}) {
       {/* <ContentStars>
         {starIcons}{additionalIcons}
       </ContentStars> */}
-
       {/* <p>S/.{precio * (desceunto/100)}<s>Hello</s></p>  */}
       <ContentPrice>
-        <Price>S/2.00</Price>
-        <PriceDescount><s>S/{product.precio}.00</s></PriceDescount>
+        <Price>S/{product.precio - product.descuento}.00</Price>
+        {product.en_descuento !== "NO" ? <PriceDescount><s>S/{product.precio}.00</s></PriceDescount> : " "}
       </ContentPrice>
 
       <StyledButton onClick={props.onClick}>Comprar</StyledButton>

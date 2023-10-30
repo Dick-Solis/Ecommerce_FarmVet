@@ -105,7 +105,7 @@ export function CardProductCart({index,productsCart,setProductsCart,product}) {
   return (
     <CardProduct>
       <ContentCard>
-        <StyledImage src={product.imagen} alt="" />
+        <StyledImage src={product.imagen} alt={product.nameProduct} />
         <TextProduct>{product.nameProduct}</TextProduct>
       </ContentCard>
       <ContentCard>

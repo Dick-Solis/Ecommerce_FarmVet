@@ -96,12 +96,9 @@ export function ComponentNavbar() {
       </Container>
       <Container>
         <StyledList>
-          <li><MenuItemLink>Comidas</MenuItemLink></li>
-          <li><MenuItemLink>Accesorios</MenuItemLink></li>
-          <li><MenuItemLink onClick={()=>scrollToSection('marcas')}>
-            Marcas
-          </MenuItemLink></li>
-          <li><MenuItemLink>Medicamentos</MenuItemLink></li>
+          <li><MenuItemLink to={'/products'}>Comidas</MenuItemLink></li>
+          <li><MenuItemLink to={'/products'}>Accesorios</MenuItemLink></li>
+          <li><MenuItemLink to={'/products'}>Medicamentos</MenuItemLink></li>
           <li><MenuItemLink>Ofertas</MenuItemLink></li>
         </StyledList>
       </Container>
