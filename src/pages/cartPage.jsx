@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
 import {BiArrowBack} from 'react-icons/bi';
 import { TitleSection } from "../components/Texts/text";
-import { WidgetShoppingCart } from "../components/widgets/widgetShoppingCart";
-import { useState } from "react";
-import { StepProgressBar } from "../components/widgets/widgetCart";
+import { useState, useEffect } from "react";
 import { SectionCartProduct } from "../section/sectionCartProduct";
+import { ComponentFooter } from "../components/footer/footer";
 //#region
   const ContainerPage = styled.main`
     height: 100vh;
-    padding: 70px 10px 0 10px;
   `;
 
   const StyldHeader = styled.header`
+    padding: 70px 0 0 0;
     display: flex;
     justify-content: space-between;
   `;
@@ -33,11 +32,22 @@ import { SectionCartProduct } from "../section/sectionCartProduct";
 
   const ContainerCart = styled.section`
     display: flex;
+    margin-top: 20px;
+    margin-bottom: 40px;
   `;
 
 //#endregion
 
 export function CartPage(){
+  let dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
+  const [productsCart, setProductsCart] = useState(dataProducts);
+
+  useEffect(() => {
+    dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
+    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
+  }, [productsCart]);
+
+
   return(
   <ContainerPage>
     <StyldHeader>
@@ -51,8 +61,12 @@ export function CartPage(){
     </StyldHeader>
     {/* <WidgetShoppingCart/> */}
     <ContainerCart>
-      <SectionCartProduct/>
+      <SectionCartProduct 
+        setProductsCart={setProductsCart}
+        productsCart={productsCart}
+        />
     </ContainerCart>
+    <ComponentFooter/>
   </ContainerPage>
   )
 }

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import reptil from '../../assets/reptil.png'
 import {AiFillDelete} from 'react-icons/ai';
 
 //#region
@@ -16,7 +15,7 @@ const CardProduct = styled.div`
 
 const StyledImage = styled.img`
     width: 150px;
-    height: 200px;
+    height: 150px;
   `;
 
 const ContentCard = styled.div`
@@ -51,7 +50,7 @@ const ConteinerControls = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 `;
 
 const StyledButoonControl = styled.button`
@@ -74,41 +73,67 @@ const ContentDelete = styled.div`
 `;
 //#endregion
 
-export function CardProductCart() {
+export function CardProductCart({index,productsCart,setProductsCart,product}) {
   const StyledDelete = {
     color: 'red',
     fontSize: '45px',
     textAling: 'right',
   }
 
+  function addProduct(index){
+    const updatedCart = [...productsCart];
+    updatedCart[index].cantidad += 1;
+    setProductsCart(updatedCart);
+  }
+
+  function restProduct(index){
+    const updatedCart = [...productsCart];
+    if(updatedCart[index].cantidad <= 1){
+      return;
+    }else{
+      updatedCart[index].cantidad -= 1;
+      setProductsCart(updatedCart);
+    } 
+  }
+
+  function deleteProduct(index){
+    console.log(index);
+    const newArrayProduct = productsCart.filter(item => productsCart.indexOf(item) !== index);
+    setProductsCart(newArrayProduct);
+  }
+
   return (
     <CardProduct>
       <ContentCard>
-        <StyledImage src={reptil} alt="" />
-        <TextProduct>nameProducssssssss</TextProduct>
+        <StyledImage src={product.imagen} alt="" />
+        <TextProduct>{product.nameProduct}</TextProduct>
       </ContentCard>
       <ContentCard>
         <div>
           <h5>Precio</h5>
-          <TextProduct>Descuento</TextProduct>
-          <TextProduct>Precio Real</TextProduct>
+          {product.descuento ? <TextProduct><s>S/{product.precio}.00</s></TextProduct> : ""}
+          <TextProduct>
+            S/{product.precio - product.descuento}.00
+          </TextProduct>
         </div>
         <div>
           <h5>Cantidad</h5>
           <ConteinerControls>
-            <StyledButoonControl>-</StyledButoonControl>
-            <TextProduct>100</TextProduct>
-            <StyledButoonControl>+</StyledButoonControl>
+            <StyledButoonControl onClick={()=>restProduct(index)}>
+              -
+            </StyledButoonControl>
+            <TextProduct>{productsCart[index] ? productsCart[index].cantidad : ""}</TextProduct>
+            <StyledButoonControl onClick={()=>addProduct(index)}>+</StyledButoonControl>
           </ConteinerControls>
         </div>
       </ContentCard>
       <ContentCard>
         <div>
           <h5>Total</h5>
-          <TextProduct>Precio Total</TextProduct>
+          <TextProduct>S/{productsCart[index]? productsCart[index].cantidad * (product.precio-product.descuento) : ""}.00</TextProduct>
         </div>
         <ContentDelete>
-          <AiFillDelete style={StyledDelete}/>
+          <AiFillDelete style={StyledDelete} onClick={()=>deleteProduct(index)}/>
         </ContentDelete>
       </ContentCard>
     </CardProduct>

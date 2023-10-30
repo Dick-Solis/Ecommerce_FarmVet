@@ -78,7 +78,6 @@ export function SectionProducts() {
   function addProductCart(initialCart) {
     const updatedCart = [...productsCart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
-    console.log(updatedCart);
     if (existingProductIndex !== -1) {
       updatedCart[existingProductIndex].cantidad += 1;
     } else
@@ -91,7 +90,6 @@ export function SectionProducts() {
         descuento: parseInt(initialCart.descuento),
       });
 
-    console.log(updatedCart);
     setProductsCart(updatedCart);
     const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
     setCartItems(TotalProductCart);
