@@ -39,8 +39,8 @@ const StyledHeart = styled(AiFillHeart)`
 const StyledImage = styled.img`
   position: relative;
   /* top: -30px; */
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: auto;
 `;
 
 const StyledTitleProduct = styled.p`

@@ -4,8 +4,9 @@ import ImagePortada from '../../assets/perrito.png';
 
 //#region
 const ContainerSlider = styled.div`
-    padding: 70px 5px;
+    padding: 70px 5px 0 5px;
     color: #ffffff;
+    height: max-content;
   `;
 
 const StyledImage = styled.img`
@@ -20,7 +21,7 @@ const SectionImage = styled.section`
     align-items: center;
     background-color: #0071e1;
     border-radius: 50%;
-    width: 650px;
+    width: 100%;
     height: 100vh;
     @media(max-width: 768px){
       width: auto;

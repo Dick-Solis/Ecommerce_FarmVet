@@ -15,7 +15,7 @@ const CardProduct = styled.div`
 
 const StyledImage = styled.img`
     width: 150px;
-    height: 150px;
+    height: auto;
   `;
 
 const ContentCard = styled.div`

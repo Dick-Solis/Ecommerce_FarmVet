@@ -7,6 +7,7 @@ import { ComponentFooter } from "../components/footer/footer";
 import { NavLink } from "react-router-dom";
 //#region
   const ContainerPage = styled.main`
+    min-width: 100%;
     height: 100vh;
   `;
 
@@ -34,8 +35,8 @@ import { NavLink } from "react-router-dom";
   const ContainerCart = styled.section`
     display: flex;
     margin-top: 20px;
-    margin-bottom: 40px;
-    height: 700px;
+    /* margin-bottom: 40px; */
+    height: 800px;
   `;
 
   const StyledNavLink = styled(NavLink)`

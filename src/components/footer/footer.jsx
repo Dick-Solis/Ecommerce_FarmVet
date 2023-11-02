@@ -6,6 +6,8 @@ import { TextSection, TitleSectionFooter } from '../Texts/text';
 
 //#region
   const StyledFooter = styled.footer`
+    align-self: flex-end;
+    width: 100%;
     display: flex;
     padding: 15px 25px;
     background-color: #0071e1;
@@ -21,7 +23,6 @@ import { TextSection, TitleSectionFooter } from '../Texts/text';
     :nth-of-type(3){
       width: 300px;
     }
-    
   `;
 
   const StyledImage = styled.img`

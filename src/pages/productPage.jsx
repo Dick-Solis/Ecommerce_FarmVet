@@ -15,6 +15,7 @@ import {TbPlayerTrackPrevFilled} from 'react-icons/tb';
   const ContentCards = styled.section`
     display: flex;
     width: 100%;
+    min-height: 900px;
     justify-content: center;
     align-items: center;
     gap: 15px;

@@ -46,7 +46,8 @@ export function ComponentInput({
   onChange,
   placeholder,
   label,
-  errors
+  errors,
+  onKeyUp
 }) {
   return (
     <DivInput>
@@ -58,6 +59,7 @@ export function ComponentInput({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onKeyUp={onKeyUp}
         required
       />
       <StyledErrors>{errors}</StyledErrors>

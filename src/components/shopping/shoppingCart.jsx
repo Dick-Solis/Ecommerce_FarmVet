@@ -4,7 +4,7 @@ import { useCart } from "../../context/cartContext";
 import { NavLink } from "react-router-dom";
 
 //#region
-const ContainerShopping = styled.div`
+const ContainerShopping = styled(NavLink)`
     position: fixed;
     bottom: 10px; 
     right: 10px;
@@ -44,14 +44,10 @@ const ContainerShopping = styled.div`
 export function ShoppingCart() {
   const {cartItems} = useCart();
 
-  const handleDivClick = () => {
-    window.location.href = '/cartShopping';
-  };
-
   return (
-    <ContainerShopping onClick={handleDivClick}>
+    <ContainerShopping to='/cartShopping'>
       <FaShoppingBag/>
       <StyledCount>{cartItems}</StyledCount>
     </ContainerShopping>
-  )
-}
+    )
+  }

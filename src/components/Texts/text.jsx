@@ -14,7 +14,7 @@ import styled from "@emotion/styled";
   `;
 
   const StyledTitleFooter = styled.h3`
-    width:100%;
+    /* width:100%; */
     font-family: 'Playpen Sans';
     text-align: center;
     color: #ffffff;

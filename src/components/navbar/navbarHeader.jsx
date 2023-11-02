@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 import { ComponentInput } from "../input/input";
 import { NavLink } from "react-router-dom";
+import { CardSearchProduct } from "../cards/cardSearchProduct";
+import { useState } from "react";
+import { Spinner } from "../spinner/spiner";
+import { searchProducts } from "../../services/productService";
 
 //#region
 const NavStyled = styled.nav`
@@ -10,7 +14,6 @@ const NavStyled = styled.nav`
     top: -30px;
     min-height: 60px;
     padding: 12px ;
-    /* z-index: 1; */
     margin: 0 60px;
     @media(max-width:768px){
       margin: 0 10px;
@@ -25,10 +28,36 @@ const Container = styled.div`
     width: 50%;
     display: flex;
     justify-content: space-around;
+    :nth-of-type(1){
+      flex-direction: column;
+    }
     @media(max-width:1000px){
       width: 100%;
     }
   `;
+
+const ContainerSearchProducts = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  z-index: 1;
+  max-width: 500px;
+  background: #0071E1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  height: 280px;
+`;
+
+const ContainerProducts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 230px;
+  overflow: auto;
+`;
 
 const ButtonStyled = styled.button`
     border: none;
@@ -76,23 +105,41 @@ const MenuItemLink = styled(NavLink)`
 //#endregion
 
 export function ComponentNavbar() {
-
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop,
-        behavior: 'smooth',
-      });
-    }
+  const [searchText, setSearchText] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  
+  function handleSearch(event){
+    event.preventDefault();
+    searchProducts(event.target.value)
+    .then(response => {
+      setSearchResults(response.data)
+    })
   };
+
   return (
     <NavStyled>
       <Container>
-        <ComponentInput 
+        <ComponentInput
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyUp={handleSearch} 
           placeholder="Ingresar nombre del producto"
         />
-        <ButtonStyled>Buscar</ButtonStyled>
+        {searchText.length > 0 && (
+          <ContainerSearchProducts>
+            <ContainerProducts>
+              {<Spinner/> && searchResults.length > 0 ?(
+                searchResults.map((product,index) =>
+                  <CardSearchProduct product={product} key={index}/>
+                )
+              ):(
+                <p>No se encontraron Resultados</p>
+              )}
+            </ContainerProducts>
+            <p>ssssssssssssss</p>
+          </ContainerSearchProducts>
+        )}
+        
       </Container>
       <Container>
         <StyledList>

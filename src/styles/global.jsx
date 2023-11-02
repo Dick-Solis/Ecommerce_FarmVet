@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors } from "./colors";
-import { fonts } from "./typography";
+import ImageContent from '../assets/VETERINARIA.png';
 
 export const reset = css`
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -80,13 +80,22 @@ export const reset = css`
 
 export const global = css`
   body {
+    display: flex;
+    flex-wrap: wrap;
     background-color: #3bb5fc;
     font-size: 1rem;
     font-family: 'Playpen Sans';
     color: ${colors.gray.dark};
     font-weight: 400;
+    background-image: url(${ImageContent});
+    background-repeat: repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: contain;
+    word-wrap: break-word;
   }
   #root {
     height: 100vh;
+    width: 100%;
   }
 `;

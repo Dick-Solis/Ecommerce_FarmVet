@@ -9,6 +9,7 @@ import { ContentSectionMarcas } from "../section/sectionMarcas";
 
 //#region
  const StyledMain = styled.main`
+    /* width: 1300px; */
     display: flex;
     flex-direction: column; 
     gap: 20px;
