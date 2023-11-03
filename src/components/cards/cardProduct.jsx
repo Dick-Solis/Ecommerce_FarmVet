@@ -117,8 +117,8 @@ export function CardProduct({...props}) {
       </ContentStars> */}
       {/* <p>S/.{precio * (desceunto/100)}<s>Hello</s></p>  */}
       <ContentPrice>
-        <Price>S/{product.precio - product.descuento}.00</Price>
-        {product.en_descuento !== "NO" ? <PriceDescount><s>S/{product.precio}.00</s></PriceDescount> : " "}
+        <Price>S/{parseFloat(product.precio - product.descuento)}</Price>
+        {product.en_descuento !== "NO" ? <PriceDescount><s>S/{product.precio}</s></PriceDescount> : " "}
       </ContentPrice>
 
       <StyledButton onClick={props.onClick}>Comprar</StyledButton>

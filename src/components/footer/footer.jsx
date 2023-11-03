@@ -31,6 +31,12 @@ import { TextSection, TitleSectionFooter } from '../Texts/text';
   `;
 
 
+   const StyledNavLink = styled(NavLink)`
+    font-style: none;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+   `;
 //#endregion
 
 export function ComponentFooter(){
@@ -38,11 +44,11 @@ export function ComponentFooter(){
     <StyledFooter>
       <SectionFooter>
         <TitleSectionFooter>Atención al CLiente</TitleSectionFooter>
-        <NavLink>Política de Privacidad</NavLink>
-        <NavLink>Política de Privacidad</NavLink>
+        <StyledNavLink to='politicas_de_privacidad'>Política de Privacidad</StyledNavLink>
+        {/* <NavLink>Política de Privacidad</NavLink> */}
       </SectionFooter>
       <SectionFooter>
-        <TitleSectionFooter>Contáctanos</TitleSectionFooter>
+        <TitleSectionFooter>Contáctanos</TitleSectionFooter>  
         <StyledImage src={logoCompany} alt="" />
         <TextSection>FARMAVET</TextSection>
         <SectionSocialIcons/>

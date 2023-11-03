@@ -93,6 +93,7 @@ export const global = css`
     background-attachment: fixed;
     background-size: contain;
     word-wrap: break-word;
+    min-height: 100vh;
   }
   #root {
     height: 100vh;

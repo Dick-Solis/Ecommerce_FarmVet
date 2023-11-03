@@ -9,6 +9,7 @@ const ContainerApp = styled.main`
   background-position: center center;
   background-attachment: fixed;
   background-size: contain;
+  min-height: 100vh;
 `;
 
 function App() {
