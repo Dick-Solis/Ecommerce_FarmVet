@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { BsFillStarFill } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
+import { NavLink,Link } from 'react-router-dom';
 
 //#region
 const CardContainer = styled.div`
@@ -110,7 +111,9 @@ export function CardProduct({...props}) {
         {/* <StyledDescount>50%</StyledDescount> */}
         <StyledHeart />
       </ContentHeader>
-      <StyledImage src={product.imagen} alt={product.nombre}  />
+      <Link to={`/products/${product.id_producto}`}>
+        <StyledImage src={product.imagen} alt={product.nombre}/>
+      </Link>
       <StyledTitleProduct>{product.nombre}</StyledTitleProduct>
       {/* <ContentStars>
         {starIcons}{additionalIcons}
