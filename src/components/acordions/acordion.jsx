@@ -26,7 +26,7 @@ const StyleTitle = styled.span`
   
 `;
 //#endregion
-export const Accordion = ({ title, content }) => {
+export const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -39,7 +39,7 @@ export const Accordion = ({ title, content }) => {
         <StyleTitle>{title}</StyleTitle>
         <span>{isOpen ? '▲' : '▼'}</span>
       </AccordionHeader>
-      <AccordionContent isOpen={isOpen}>{content}</AccordionContent>
+      <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
     </AccordionContainer>
   );
 };

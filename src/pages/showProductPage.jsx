@@ -75,6 +75,12 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
+const StyleText = styled.p`
+  font-weight: bold;
+  color: #ffffff;
+  word-wrap: break-word;
+`;
+
 //#endregion
 
 export function ShowProductPage() {
@@ -107,10 +113,15 @@ export function ShowProductPage() {
               Comprar
             </StyledButton>
             <div>
-              <Accordion title="Título 1" content="Contenido del primer acordeón" />
-              <Accordion title="Título 1" content="Contenido del primer acordeón" />
-              <Accordion title="Título 1" content="Contenido del primer acordeón" />
-              <Accordion title="Título 1" content="Contenido del primer acordeón" />
+            <Accordion title="Descripción">
+              <StyleText>{dataProduct.descripcion==="NULL" ? "No existe descripción para este producto": dataProduct.descripcion}</StyleText>
+            </Accordion>
+            <Accordion title="Características">
+              <StyleText>Modelo: {dataProduct.modelo}</StyleText>
+              <StyleText>Unidad de Medida: {dataProduct.unidad_de_medida}</StyleText>
+              <StyleText>Marca: {dataProduct.marca}</StyleText>
+              <StyleText>Código: {dataProduct.código_interno}</StyleText>
+            </Accordion>
             </div>
           </ContainerDataDescription>
         </ContainerDescription>
