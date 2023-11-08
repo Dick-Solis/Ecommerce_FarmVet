@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { CardProductCart } from '../components/cards/cardProductCart';
-import { TitleSection } from '../components/Texts/text';
-import { useState } from 'react';
 
 //#region
   const SectionContent = styled.section`
@@ -73,6 +71,7 @@ export function SectionCartProduct({setHandleSection,productsCart,setProductsCar
   function handleClick(){
     setHandleSection(1)
   }
+  // console.log(productsCart)
   return(
     <SectionContent>
       <SectionCardsCart>

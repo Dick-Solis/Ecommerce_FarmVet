@@ -108,7 +108,7 @@ export function CardProduct({...props}) {
   return (
     <CardContainer>
       <ContentHeader>
-        {/* <StyledDescount>50%</StyledDescount> */}
+        {product.en_descuento != 'NO' && <StyledDescount>-{product.descuento * 100}%</StyledDescount>}
         <StyledHeart />
       </ContentHeader>
       <Link to={`/products/${product.id_producto}`}>
@@ -120,8 +120,8 @@ export function CardProduct({...props}) {
       </ContentStars> */}
       {/* <p>S/.{precio * (desceunto/100)}<s>Hello</s></p>  */}
       <ContentPrice>
-        <Price>S/{parseFloat(product.precio - product.descuento)}</Price>
-        {product.en_descuento !== "NO" ? <PriceDescount><s>S/{product.precio}</s></PriceDescount> : " "}
+        {product.en_descuento === 'SI' ? <Price><s>S/{product.precio}</s></Price> : <Price>S/{product.precio}</Price>}
+        {product.en_descuento === 'SI' && <PriceDescount>S/{product.precio-(product.precio * product.descuento)}</PriceDescount>}
       </ContentPrice>
 
       <StyledButton onClick={props.onClick}>Comprar</StyledButton>

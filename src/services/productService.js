@@ -9,3 +9,8 @@ export async function searchProducts(nameProduct){
   const response = await apiFetch(`/productos/searchProduct?q=${nameProduct}`);
   return response;
 }
+
+export async function showProductPage(id){
+  const response =  await apiFetch(`/productos/showProductById/${id}`);
+  return response;
+}

@@ -45,13 +45,13 @@ import { NavLink } from "react-router-dom";
 //#endregion
 
 export function CartPage(){
-  let dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
+  let dataProducts = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
   const [productsCart, setProductsCart] = useState(dataProducts);
   const [handleSection, setHandleSection] = useState(0);
 
   useEffect(() => {
-    dataProducts = JSON.parse(localStorage.getItem('dataProductsCart'));
-    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
+    dataProducts = JSON.parse(sessionStorage.getItem('dataProductsCart'));
+    sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
   }, [productsCart]);
 
 

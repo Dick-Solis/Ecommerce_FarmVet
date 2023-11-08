@@ -52,13 +52,13 @@ const ContainerScrolling = styled.div`
 export function SectionProducts() {
 
   const [dataProducts, setDataProducts] = useState([]);
-  const initialCart = JSON.parse(localStorage.getItem('dataProductsCart')) || [];
+  const initialCart = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
   const [productsCart, setProductsCart] = useState(initialCart);
   let { setCartItems } = useCart();
 
   useEffect(() => {
-    localStorage.setItem('dataProductsCart', JSON.stringify(productsCart));        
-    const TotalRefreshCart = JSON.parse(localStorage.getItem('dataProductsCart'));
+    sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));        
+    const TotalRefreshCart = JSON.parse(sessionStorage.getItem('dataProductsCart'));
     setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
     showAllProducts()
     .then((response)=>setDataProducts(response.data));
