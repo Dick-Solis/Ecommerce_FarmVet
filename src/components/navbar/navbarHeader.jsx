@@ -5,6 +5,7 @@ import { CardSearchProduct } from "../cards/cardSearchProduct";
 import { useState } from "react";
 import { Spinner } from "../spinner/spiner";
 import { searchProducts } from "../../services/productService";
+import { SkeletonCard } from "../skeleton/skeletonCard";
 
 //#region
 const NavStyled = styled.nav`
@@ -57,15 +58,14 @@ const ContainerProducts = styled.div`
   gap: 5px;
   height: 230px;
   overflow: auto;
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+  background: #034a70; 
+  border-radius: 6px;
+  }
 `;
-
-const ButtonStyled = styled.button`
-    border: none;
-    background-color: #0071E1;
-    color: #ffffff;
-    font-weight: bold;  
-    border-radius: 5px; 
-  `;
 
 const StyledList = styled.ul`
   display: flex;
@@ -98,21 +98,40 @@ const MenuItemLink = styled(NavLink)`
         fill: #23394d;
       }
     }
-
- 
   }`;
 
+
+const MessageEmpty = styled.p`
+  color: #ffffff;
+  font-weight: bold;
+`;
+
+
+const StyledButton = styled(NavLink)`
+  background-color: #ff0101;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 10px;
+  border:none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+`;
 //#endregion
 
 export function ComponentNavbar() {
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  
+  const [activeSkeletons, setActiveSkeletons] = useState(true);
+
+
   function handleSearch(event){
     event.preventDefault();
     searchProducts(event.target.value)
     .then(response => {
       setSearchResults(response.data)
+      setActiveSkeletons(false);
     })
   };
 
@@ -121,22 +140,26 @@ export function ComponentNavbar() {
       <Container>
         <ComponentInput
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => {
+            setSearchText(e.target.value)
+            
+          }}
           onKeyUp={handleSearch} 
           placeholder="Ingresar nombre del producto"
         />
         {searchText.length > 0 && (
           <ContainerSearchProducts>
             <ContainerProducts>
-              {<Spinner/> && searchResults.length > 0 ?(
+            {activeSkeletons && <SkeletonCard alto="230px" ancho="300px"/>}
+              {searchResults.length > 0 ?(
                 searchResults.map((product,index) =>
                   <CardSearchProduct product={product} key={index}/>
                 )
               ):(
-                <p>No se encontraron Resultados</p>
-              )}
+                <MessageEmpty>No se encontraron Resultados</MessageEmpty>
+              )} 
             </ContainerProducts>
-            <p>ssssssssssssss</p>
+            {searchResults.length > 3 && <StyledButton to={`/productsSearch/${searchText}`}>Más Resultados</StyledButton>}
           </ContainerSearchProducts>
         )}
         

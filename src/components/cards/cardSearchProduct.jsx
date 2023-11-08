@@ -14,6 +14,7 @@ import {  } from '../Texts/text';
   `;
 
   const StyledImage = styled.img`
+    position: relative;
     width: 50px;
     height: auto;
   `;
@@ -23,11 +24,15 @@ import {  } from '../Texts/text';
     color: #0071e1;
     font-weight: 600;
   `;
+
+  const StyledLinkImage = styled(NavLink)`
+    width: 100%;
+  `;
 //#endregion
 
 export function CardSearchProduct({product}){
   return(
-    <NavLink style={{textDecoration: 'none'}}>
+    <NavLink to={`/products/${product.id_producto}`} style={{textDecoration: 'none'}}>
     <ContainerCard>
       <StyledImage src={product.imagen} alt={product.nombre} />
       <StyledNameProduct>{product.nombre}</StyledNameProduct>

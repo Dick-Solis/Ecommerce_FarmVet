@@ -4,6 +4,7 @@ import { CartPage } from "../pages/cartPage";
 import { ProductPage } from "../pages/productPage";
 import { Article } from "../pages/privacidadPage";
 import { ShowProductPage } from "../pages/showProductPage";
+import { SearchPageProducts } from "../pages/searchProducts";
 
 export function MyRoutes(){
   return(
@@ -13,6 +14,7 @@ export function MyRoutes(){
       <Route path="/products" element={<ProductPage/>}/>
       <Route path='/products/:id' element={<ShowProductPage/>}/>
       <Route path='/politicas_de_privacidad' element={<Article/>}/>
+      <Route path='/productsSearch/:busqueda' element={<SearchPageProducts/>}/>
     </Routes>
   )
 }
