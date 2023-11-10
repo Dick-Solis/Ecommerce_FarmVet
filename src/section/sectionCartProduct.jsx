@@ -15,8 +15,15 @@ import { CardProductCart } from '../components/cards/cardProductCart';
     display: flex;
     flex-direction: column;
     overflow: auto;
-    height: 500px !important;
+    height: 700px ;
     gap: 20px;
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #034a70; 
+      border-radius: 6px;
+    }
   `;
 
   const SectionContentCart = styled.div`
@@ -63,7 +70,7 @@ export function SectionCartProduct({setHandleSection,productsCart,setProductsCar
   function TotalCart(){
     let TotalAmount = 0;
     for(const product of productsCart) {
-      TotalAmount += product.cantidad * (product.precio - product.descuento);
+      TotalAmount += productsCart.en_descuento === 'SI' ? product.cantidad * (product.precio - (product.descuento * 100)) : product.cantidad * product.precio;
     }
     return TotalAmount;
   }
@@ -71,7 +78,6 @@ export function SectionCartProduct({setHandleSection,productsCart,setProductsCar
   function handleClick(){
     setHandleSection(1)
   }
-  // console.log(productsCart)
   return(
     <SectionContent>
       <SectionCardsCart>

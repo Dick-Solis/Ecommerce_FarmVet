@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const DivInput = styled.div`
 display: flex;
 flex-direction: column;
-width: 100%;
+width: ${(props) => props.ancho};
 gap: 4px;
 text-align: left;
 padding: 0 10px 0 0;
@@ -20,7 +20,7 @@ box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
 border-radius: 4px;
 border: none;
 background-color: #F4F4F4;
-height: 30px;
+height: 40px;
 width: 100%;
 padding: 4px 8px;
 outline: none;
@@ -47,10 +47,11 @@ export function ComponentInput({
   placeholder,
   label,
   errors,
-  onKeyUp
+  onKeyUp,
+  ancho,
 }) {
   return (
-    <DivInput>
+    <DivInput ancho={ancho}>
       {label && <TitleInput htmlFor={id || name}>{label}</TitleInput>}
       <BodyInput
         type={type}

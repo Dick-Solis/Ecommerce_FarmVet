@@ -142,8 +142,8 @@ export function ComponentNavbar() {
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value)
-            
           }}
+          ancho="100%"
           onKeyUp={handleSearch} 
           placeholder="Ingresar nombre del producto"
         />

@@ -11,7 +11,6 @@ export function AddWidget() {
             uploadPreset: "farmavet",
             folder: "recursos-grupo-rino/farmavet-app/product-images",
         }, function (error, result) {
-            console.log(`URL: ${result.info.url}`);
         });
     }, []);
 

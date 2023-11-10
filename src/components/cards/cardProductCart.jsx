@@ -97,7 +97,6 @@ export function CardProductCart({index,productsCart,setProductsCart,product}) {
   }
 
   function deleteProduct(index){
-    console.log(index);
     const newArrayProduct = productsCart.filter(item => productsCart.indexOf(item) !== index);
     setProductsCart(newArrayProduct);
   }
@@ -111,10 +110,8 @@ export function CardProductCart({index,productsCart,setProductsCart,product}) {
       <ContentCard>
         <div>
           <h5>Precio</h5>
-          {product.descuento ? <TextProduct><s>S/{product.precio}.00</s></TextProduct> : ""}
-          <TextProduct>
-            S/{product.precio - product.descuento}.00
-          </TextProduct>
+          {product.en_descuento === 'SI' ? <TextProduct><s>S/{product.precio}</s></TextProduct> : <TextProduct>S/{product.precio}.00</TextProduct>}
+          {product.en_descuento === 'SI' ? <TextProduct>{product.precio -(product.precio * product.descuento)}</TextProduct> : ""}
         </div>
         <div>
           <h5>Cantidad</h5>
@@ -130,7 +127,7 @@ export function CardProductCart({index,productsCart,setProductsCart,product}) {
       <ContentCard>
         <div>
           <h5>Total</h5>
-          <TextProduct>S/{productsCart[index]? productsCart[index].cantidad * (product.precio-product.descuento) : ""}.00</TextProduct>
+          <TextProduct>S/{productsCart[index] ? productsCart[index].cantidad * ((product.en_descuento === 'SI' ? product.precio -(product.descuento * 100): product.precio)) : ""}.00</TextProduct>
         </div>
         <ContentDelete>
           <AiFillDelete style={StyledDelete} onClick={()=>deleteProduct(index)}/>

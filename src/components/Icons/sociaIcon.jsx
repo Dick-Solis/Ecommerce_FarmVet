@@ -9,13 +9,12 @@ import { NavLink } from "react-router-dom";
     justify-content: center;
     align-items: center;
     font-size: 25px;
-    color: ${({color}) => color};
-    background-color: white;
+    color: white;
     padding: 10px;
     border-radius: 50px;
     :hover{
-      background-color: ${({color}) => color};
-      color: white;
+      background-color: #ffffff;
+      color: ${({color}) => color};
     }
   `;
 //#endregion

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import logoCompany from '../../assets/LOGO-01.png';
 import { SectionSocialIcons } from '../widgets/widgetSocialIcons';
 import { TextSection, TitleSectionFooter } from '../Texts/text';
+import libro from '../../assets/libro.png';
 
 //#region
   const StyledFooter = styled.footer`
@@ -44,11 +45,13 @@ export function ComponentFooter(){
     <StyledFooter>
       <SectionFooter>
         <TitleSectionFooter>Atención al CLiente</TitleSectionFooter>
-        <StyledNavLink to='politicas_de_privacidad'>Política de Privacidad</StyledNavLink>
-        {/* <NavLink>Política de Privacidad</NavLink> */}
+        <StyledNavLink to='/politicas_de_privacidad'>Política de Privacidad</StyledNavLink>
+        <TitleSectionFooter>Libro de Reclamaciones</TitleSectionFooter>
+        <StyledNavLink to='/reclamaciones'>
+          <StyledImage src={libro} alt="" />
+        </StyledNavLink>
       </SectionFooter>
       <SectionFooter>
-        <TitleSectionFooter>Contáctanos</TitleSectionFooter>  
         <StyledImage src={logoCompany} alt="" />
         <TextSection>FARMAVET</TextSection>
         <SectionSocialIcons/>
