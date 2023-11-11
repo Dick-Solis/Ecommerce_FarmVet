@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
-import brit from '../assets/brit.png';
-import dogChow from '../assets/dogChow.jpg';
-import mimaskot from '../assets/mimaskot.png';
-import pedigree from '../assets/Pedigree-logo.png';
-import ricocan from '../assets/ricocan.jpg';
-import { TitleSection } from "../components/Texts/text";
+import { ScrollHorizontal } from "../components/scroll/horizontaScroll";
+import { getMarcas } from "../services/marcasServices";
+import { useState,useEffect } from "react";
 
 //#region
   const ContainerMarcas = styled.div`
@@ -26,26 +23,23 @@ import { TitleSection } from "../components/Texts/text";
     }
   `;
 
-  const Marcas = styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 17px;
-  `;
 //#endregion
 
 export function ContentSectionMarcas(){
+  const [dataMarcas,setDataMarcas] = useState([]);
+
+  useEffect(() =>{
+    getMarcas()
+      .then(response => setDataMarcas(response));
+  },[])
+
   return(
     <ContainerMarcas id='marcas'>
-      <TitleSection>Marcas Utilizadas</TitleSection>
-      <Marcas>
-        <ImageStyled src={brit} alt="brit logo"/>
-        <ImageStyled src={dogChow} alt="dogChow logo"/>
-        <ImageStyled src={mimaskot} alt="mimaskot logo"/>
-        <ImageStyled src={pedigree} alt="pedigree logo"/>
-        <ImageStyled src={ricocan} alt="ricocan logo"/>
-      </Marcas>
+      <ScrollHorizontal scrollAmount={200} title={"Marcas Utilizadas"}>
+        {dataMarcas.map(marca =>(
+          <ImageStyled src={marca.imagen} alt={marca.nombre} key={marca.id_marca}/>
+        ))}
+      </ScrollHorizontal>
     </ContainerMarcas>
   )
 }

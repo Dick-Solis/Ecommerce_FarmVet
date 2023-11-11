@@ -36,8 +36,8 @@ import libro from '../../assets/libro.png';
     display: flex;
     flex-direction: column;
     gap: 7px;
-    :nth-of-type(3){
-      width: 300px;
+    :nth-of-type(2){
+      text-align: center;
     }
   `;
 
