@@ -110,7 +110,8 @@ export function SectionProducts() {
             product={product}
             onClick={() => {
               addProductCart(product)
-            }}/>
+            }}
+            />
         ))}
       </ContainerScrolling>
     </ContainerCards>

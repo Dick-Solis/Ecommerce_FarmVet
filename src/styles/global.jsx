@@ -6,6 +6,7 @@ import ImageContent from '../assets/VETERINARIA.png';
 export const reset = css`
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playpen+Sans:wght@100;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
   /* Box sizing rules */
   *,
   *::before,
@@ -84,7 +85,7 @@ export const global = css`
     flex-wrap: wrap;
     background-color: #3bb5fc;
     font-size: 1rem;
-    font-family: 'Playpen Sans';
+    font-family: 'Playpen Sans','Montserrat';
     color: ${colors.gray.dark};
     font-weight: 400;
     background-image: url(${ImageContent});

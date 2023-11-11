@@ -2,9 +2,12 @@ import styled from '@emotion/styled';
 import { BsFillStarFill } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
 import { NavLink,Link } from 'react-router-dom';
+import { handleFavorite } from '../../events/favoriteEvent';
+import { useState } from 'react';
 
 //#region
 const CardContainer = styled.div`
+    font-family: monospace;
     width: 250px;
     min-width: 250px;
     border-radius: 15px;
@@ -45,8 +48,10 @@ const StyledImage = styled.img`
 `;
 
 const StyledTitleProduct = styled.p`
-  font-size: 18px;
+  height: 29px;
+  font-size: 12px;
   font-weight: bold;
+  text-align: center;
 `;
 
 const ContentStars = styled.div`
@@ -71,7 +76,8 @@ const Price = styled.p`
 `;
 
 const StyledButton = styled.button`
-  width: 70%;
+  width: 100%;
+  font-family: 'Playpen Sans';
   background-color: #0071e1;
   padding: 10px;
   border: none;
@@ -82,7 +88,7 @@ const StyledButton = styled.button`
 `
 //#endregion
 
-export function CardProduct({...props}) {
+export function CardProduct({activeHeart,handleFavorite,...props}) {
   const product = props.product;
   const StyledStarCalificated = {
     color: 'gold',
@@ -105,12 +111,13 @@ export function CardProduct({...props}) {
       <BsFillStarFill key={index + timesToRepeat} style={StyledStar} />
     ));
 
+
   return (
     <CardContainer>
       <ContentHeader>
         {product.en_descuento != 'NO' && <StyledDescount>-{product.descuento * 100}%</StyledDescount>}
-        <StyledHeart />
-      </ContentHeader>
+        {/* <StyledHeart onClick={()=>handleFavorite(product)}  style={{cursor:"pointer",color: activeHeart ? "#FF0000" : "#BAB4B4"}}/> */}
+      </ContentHeader >
       <Link to={`/products/${product.id_producto}`}>
         <StyledImage src={product.imagen} alt={product.nombre}/>
       </Link>
@@ -124,7 +131,7 @@ export function CardProduct({...props}) {
         {product.en_descuento === 'SI' && <PriceDescount>S/{product.precio-(product.precio * product.descuento)}</PriceDescount>}
       </ContentPrice>
 
-      <StyledButton onClick={props.onClick}>Comprar</StyledButton>
+      <StyledButton onClick={props.onClick}>Añadir al Carrito</StyledButton>
     </CardContainer>
   )
 }

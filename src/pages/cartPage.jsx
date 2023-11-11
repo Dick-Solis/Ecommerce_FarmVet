@@ -7,8 +7,7 @@ import { ComponentFooter } from "../components/footer/footer";
 import { NavLink } from "react-router-dom";
 //#region
   const ContainerPage = styled.main`
-    min-width: 100%;
-    height: 100vh;
+    min-width: 100vh;
   `;
 
   const StyldHeader = styled.header`
@@ -36,7 +35,7 @@ import { NavLink } from "react-router-dom";
     display: flex;
     margin-top: 20px;
     /* margin-bottom: 40px; */
-    height: 800px;
+    height: 1000px;
   `;
 
   const StyledNavLink = styled(NavLink)`
@@ -65,10 +64,12 @@ export function CartPage(){
           setHandleSection={setHandleSection}
         />
         )
-      case 1:
-        return(
-          <h2>Holllllaaaaaaaaaaaaaaaaaa</h2>
-        )
+      // case 1:
+      //   return(
+      //     <CulqiSection
+      //       productsCart={productsCart}
+      //     />
+      //   )
       default:
         break;
     }

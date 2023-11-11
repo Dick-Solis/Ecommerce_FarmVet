@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { CardProductCart } from '../components/cards/cardProductCart';
+import logoCompany from '../assets/LOGO-01.png';
+import { useState } from 'react';
 
 //#region
-  const SectionContent = styled.section`
+const SectionContent = styled.section`
     width: 100%;
     display: flex;
     justify-content: center;
@@ -11,7 +13,7 @@ import { CardProductCart } from '../components/cards/cardProductCart';
     padding: 10px;
   `;
 
-  const SectionCardsCart = styled.div`
+const SectionCardsCart = styled.div`
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -26,7 +28,7 @@ import { CardProductCart } from '../components/cards/cardProductCart';
     }
   `;
 
-  const SectionContentCart = styled.div`
+const SectionContentCart = styled.div`
     width: 300px;
     height: 200px;
     background-color: #ffffff;
@@ -41,17 +43,17 @@ import { CardProductCart } from '../components/cards/cardProductCart';
     }
   `;
 
-  const TitleCart = styled.h3`
+const TitleCart = styled.h3`
     color: #0071e1;
   `;
 
-  const ContentPrice = styled.div`
+const ContentPrice = styled.div`
     display: flex;
     justify-content: space-between;
     /* margin-bottom: 4px solid #0071e1; */
   `;
 
-  const ButoonComprar = styled.button`
+const ButoonComprar = styled.button`
     background-color: #ff0000;
     padding: 10px;
     color: #ffffff;
@@ -60,30 +62,100 @@ import { CardProductCart } from '../components/cards/cardProductCart';
     border-radius: 10px;
   `;
 
-  const StyledMount = styled.p`
+const StyledMount = styled.p`
     font-weight: bold;
   `;
 //#endregion
 
-export function SectionCartProduct({setHandleSection,productsCart,setProductsCart}){
+export function SectionCartProduct({ setHandleSection, productsCart, setProductsCart }) {
+  Culqi.publicKey = 'pk_test_b82c57f9c45befda';
+  const [activeModal,setActiveModal] = useState(false);
+  let buttonCulqi;
+  Culqi.options({
+    style: {
+      logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
+      bannerColor: '', // hexadecimal
+      buttonBackground: '#0071e1', // hexadecimal
+      menuColor: '#0071e1', // hexadecimal
+      linksColor: '#0071e1', // hexadecimal
+      buttonText: '', // texto que tomará el botón
+      buttonTextColor: '#ffffff', // hexadecimal
+      priceColor: '#0071e1' // hexadecimal
+    }
+  });
 
-  function TotalCart(){
+  function TotalCart() {
     let TotalAmount = 0;
-    for(const product of productsCart) {
+    for (const product of productsCart) {
       TotalAmount += productsCart.en_descuento === 'SI' ? product.cantidad * (product.precio - (product.descuento * 100)) : product.cantidad * product.precio;
     }
     return TotalAmount;
   }
-  
-  function handleClick(){
-    setHandleSection(1)
+
+  let TotalAmount = 0;
+  for (const product of productsCart) {
+    TotalAmount += productsCart.en_descuento === 'SI' ? product.cantidad * (product.precio - (product.descuento * 100)) : product.cantidad * product.precio;
   }
-  return(
+
+  function handleClick(e) {
+    Culqi.settings({
+      title: 'Culqi Store',
+      currency: 'PEN',
+      amount: TotalAmount * 100,
+      order: 'ord_live_0CjjdWhFpEAZlxlz',
+    })
+    Culqi.options({
+      lang: "auto",
+      installments: false,
+      paymentMethods: {
+        tarjeta: true,
+        yape: true,
+        bancaMovil: true,
+        agente: true,
+        billetera: true,
+        cuotealo: true,
+      },
+    });
+    Culqi.open();
+    e.preventDefault();
+    setTimeout(()=>{
+      console.log('despues de 4 segundo');
+      buttonCulqi = document.getElementById('culqi-js');
+      setActiveModal(true);
+    },3000)
+  };
+
+
+  // const culqi = () => {
+  //   if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+  //     const token = Culqi.token.id;
+  //     console.log('Se ha creado un Token: ', token);
+  //     //En esta linea de codigo debemos enviar el "Culqi.token.id"
+  //     //hacia tu servidor con Ajax
+  //   } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+  //     const order = Culqi.order;
+  //     console.log('Se ha creado el objeto Order: ', order);
+
+  //   } else {
+  //     // Mostramos JSON de objeto error en consola
+  //     console.log('Error : ', Culqi.error);
+  //   }
+  // }
+
+  // culqi()
+  // if(buttonCulqi){
+  //   buttonCulqi.addEventListener('click', (e) => {
+  //     console.log('entré a la Ui');
+  //   });
+  // }
+  activeModal ? console.log(buttonCulqi): "";
+
+  return (
     <SectionContent>
       <SectionCardsCart>
         {
-          productsCart.map((product,index) => (
-            <CardProductCart 
+          productsCart.map((product, index) => (
+            <CardProductCart
               key={product.id_producto}
               product={product}
               setProductsCart={setProductsCart}
@@ -93,7 +165,7 @@ export function SectionCartProduct({setHandleSection,productsCart,setProductsCar
           ))
         }
       </SectionCardsCart>
-      {TotalCart() === 0 ? "":<SectionContentCart>
+      {TotalCart() === 0 ? "" : <SectionContentCart>
         <TitleCart>Resumen de Compra</TitleCart>
         <ContentPrice>
           <h4>Subtotal</h4>
@@ -103,7 +175,9 @@ export function SectionCartProduct({setHandleSection,productsCart,setProductsCar
           <h4>Total</h4>
           <StyledMount>S/{TotalCart()}.00</StyledMount>
         </ContentPrice>
-        <ButoonComprar onClick={handleClick}>Ir a Comprar</ButoonComprar>
+        <ButoonComprar onClick={handleClick} id='btn_pagar'>
+          Ir a Comprar
+        </ButoonComprar>
       </SectionContentCart>}
     </SectionContent>
   )

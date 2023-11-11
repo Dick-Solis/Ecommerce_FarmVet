@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%; 
+    width: 100%; 
     gap: 25px;
     @media(max-width:768px){
       padding: 0 15px;
