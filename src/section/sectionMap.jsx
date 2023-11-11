@@ -16,8 +16,9 @@ import styled from '@emotion/styled';
   const ContentMap = styled.iframe`
     display: flex;
     width: 100%;
-    padding: 20px;
-    height: 400px;
+    padding: 15px;
+    height: 100%;
+    height: 100%;
     @media(max-width:1000px){
       width: 100%;
     }

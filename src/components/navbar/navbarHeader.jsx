@@ -14,7 +14,8 @@ const NavStyled = styled.nav`
     border-radius: 5px;
     top: -30px;
     min-height: 60px;
-    padding: 12px ;
+    padding: 12px;
+    width: 100%;
     margin: 0 60px;
     @media(max-width:768px){
       margin: 0 10px;

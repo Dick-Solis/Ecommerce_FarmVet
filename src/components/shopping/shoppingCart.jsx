@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { FaShoppingBag } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from "../../context/cartContext";
 import { NavLink } from "react-router-dom";
+import {AiOutlineShoppingCart} from "react-icons/ai";
 
 //#region
 const ContainerShopping = styled(NavLink)`
@@ -16,10 +17,11 @@ const ContainerShopping = styled(NavLink)`
     width: 80px;
     height: 80px;
     font-size: 70px;
-    background-color: #008fdc;
+    background-color: #0071e1;
     padding-left: 10px;
-    color: #0e4967;
+    color: #ffffff;
     cursor: pointer;
+    text-decoration: none;
   `;
 
   const StyledCount = styled.p`
@@ -35,8 +37,8 @@ const ContainerShopping = styled(NavLink)`
     border-radius: 50%;
     top: -10px;
     left: -10px;
-    background-color: #0e4967;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #0071e1;
     z-index: 12;
   `;
 //#endregion
@@ -46,7 +48,7 @@ export function ShoppingCart() {
 
   return (
     <ContainerShopping to='/cartShopping'>
-      <FaShoppingBag/>
+      <AiOutlineShoppingCart/>
       <StyledCount>{cartItems}</StyledCount>
     </ContainerShopping>
     )

@@ -4,6 +4,11 @@ import ImagePortada from '../../assets/perrito.png';
 
 //#region
 const ContainerSlider = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     padding: 70px 5px 0 5px;
     color: #ffffff;
     height: max-content;
@@ -87,6 +92,14 @@ const StyledDescription = styled.p`
     font-size: 15px;
   }
 `;
+
+const ContentNavbar = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1170px;
+`;
 //#endregion
 
 export function ComponentSlider() {
@@ -105,7 +118,9 @@ export function ComponentSlider() {
           <StyledDescription>Salud y Nutrición Animal</StyledDescription>
         </SectionDescription>
       </ContainerDescription>
-      <ComponentNavbar />
+      <ContentNavbar>
+        <ComponentNavbar />
+      </ContentNavbar>
     </ContainerSlider>
   )
 }

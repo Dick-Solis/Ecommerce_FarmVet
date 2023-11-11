@@ -17,7 +17,7 @@ const ContainerContact = styled.section`
   `;
 
 const ContainerCardContact = styled.section`
-  width: 100%;
+  width: 30%;
   display: flex ;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,10 @@ const StyledDescription = styled.div`
     color: #0071e1;
   `;
 
+const StyledContent = styled.section`
+  display: flex;
+`;
+
 const ContentTitles = styled.div``;
 //#endregion
 
@@ -40,21 +44,24 @@ function SectionCardContacts() {
       <ContentTitles>
         <TitleSection>Contáctanos</TitleSection>
       </ContentTitles>
-      <ContainerCardContact>
-        <CardContact image={calendar}>
-          <StyledDescription>Lunes - Sabado</StyledDescription>
-          <StyledDescription>9:00 am - 19:00 pm</StyledDescription>
-        </CardContact>
-        <CardContact image={phone}>
-          <StyledDescription>Llamanos</StyledDescription>
-          <StyledDescription>972 473 134</StyledDescription>
-        </CardContact>
-        <CardContact image={ubication}>
-          <StyledDescription>Huánuco - Perú</StyledDescription>
-          <StyledDescription>Jirón Abtao #443</StyledDescription>
-        </CardContact>
-      </ContainerCardContact>
-      <SectionMap/>
+      <StyledContent>
+        <ContainerCardContact>
+          <CardContact image={calendar}>
+            <StyledDescription>Lunes - Sabado</StyledDescription>
+            <StyledDescription>9:00 am - 19:00 pm</StyledDescription>
+          </CardContact>
+          <CardContact image={phone}>
+            <StyledDescription>Llamanos</StyledDescription>
+            <StyledDescription>972 473 134</StyledDescription>
+          </CardContact>
+          <CardContact image={ubication}>
+            <StyledDescription>Huánuco - Perú</StyledDescription>
+            <StyledDescription>Jirón Abtao #443</StyledDescription>
+          </CardContact>
+        </ContainerCardContact>
+
+        <SectionMap/>
+      </StyledContent>
     </ContainerContact>
   )
 }
