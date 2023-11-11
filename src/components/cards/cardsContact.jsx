@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Children } from "react";
 
 //#region
-  const StyledCardContact = styled.div`
+  const StyledCardContact = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;

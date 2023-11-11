@@ -3,7 +3,7 @@ import CardContact from '../components/cards/cardsContact';
 import calendar from '../assets/calendar.svg';
 import phone from '../assets/phone.svg';
 import ubication from '../assets/ubication.svg';
-import { DescriptionSection, TitleSection } from '../components/Texts/text';
+import { TitleSection } from '../components/Texts/text';
 import SectionMap from './sectionMap';
 
 
@@ -24,6 +24,9 @@ const ContainerCardContact = styled.section`
   flex-wrap: wrap;
   gap: 10px 20px; 
   padding: 10px;
+  @media(max-width:650px){
+    width: 100%;
+  }
 `;
 
 const StyledDescription = styled.div`
@@ -33,9 +36,17 @@ const StyledDescription = styled.div`
 
 const StyledContent = styled.section`
   display: flex;
+  @media(max-width:650px){
+    flex-wrap: wrap;
+  }
 `;
 
 const ContentTitles = styled.div``;
+
+const StyledImage = styled.img`
+  width: 250px;
+  height: 250px;
+`;
 //#endregion
 
 function SectionCardContacts() {
@@ -45,21 +56,24 @@ function SectionCardContacts() {
         <TitleSection>Contáctanos</TitleSection>
       </ContentTitles>
       <StyledContent>
+        
         <ContainerCardContact>
-          <CardContact image={calendar}>
-            <StyledDescription>Lunes - Sabado</StyledDescription>
-            <StyledDescription>9:00 am - 19:00 pm</StyledDescription>
-          </CardContact>
-          <CardContact image={phone}>
-            <StyledDescription>Llamanos</StyledDescription>
-            <StyledDescription>972 473 134</StyledDescription>
-          </CardContact>
-          <CardContact image={ubication}>
-            <StyledDescription>Huánuco - Perú</StyledDescription>
-            <StyledDescription>Jirón Abtao #443</StyledDescription>
-          </CardContact>
-        </ContainerCardContact>
+          {/* <ScrollHorizontal scrollAmount={200}> */}
+            <CardContact image={calendar}>
+              <StyledDescription>Lunes - Sabado</StyledDescription>
+              <StyledDescription>9:00 am - 19:00 pm</StyledDescription>
+            </CardContact>
+            <CardContact image={phone}>
+              <StyledDescription>Llamanos</StyledDescription>
+              <StyledDescription>972 473 134</StyledDescription>
+            </CardContact>
+            <CardContact image={ubication}>
+              <StyledDescription>Huánuco - Perú</StyledDescription>
+              <StyledDescription>Jirón Abtao #443</StyledDescription>
+            </CardContact>
 
+          {/* </ScrollHorizontal> */}
+        </ContainerCardContact>
         <SectionMap/>
       </StyledContent>
     </ContainerContact>

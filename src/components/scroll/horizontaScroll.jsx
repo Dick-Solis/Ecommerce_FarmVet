@@ -62,8 +62,6 @@ export function ScrollHorizontal({ title,children, scrollAmount = 800 }) {
         <TitleSection>{title}</TitleSection>
         <ButtonStyled onClick={() => scroll(scrollAmount)}>👉</ButtonStyled>
       </ContainerHeader>}
-      
-
       <ContainerScrolling ref={containerRef} className='scrolling-container'>
         {children}
       </ContainerScrolling>

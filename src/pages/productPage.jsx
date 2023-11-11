@@ -9,6 +9,10 @@ import {TbPlayerTrackPrevFilled} from 'react-icons/tb';
 
 //#region
   const ContentPage = styled.main`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-top: 100px;
   `;
 
@@ -48,6 +52,14 @@ import {TbPlayerTrackPrevFilled} from 'react-icons/tb';
     height: 50px;
     cursor: pointer;
   `;
+
+const ContentNavbar = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1170px;
+`;
 //#endregion
 
 export function ProductPage(){
@@ -76,7 +88,9 @@ export function ProductPage(){
 
   return(
     <ContentPage>
-      <ComponentNavbar/>
+      <ContentNavbar>
+        <ComponentNavbar/>  
+      </ContentNavbar>
       <ContentCards>
         {
           initialData.map((product,index) => (

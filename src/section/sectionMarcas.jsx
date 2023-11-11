@@ -3,6 +3,7 @@ import { ScrollHorizontal } from "../components/scroll/horizontaScroll";
 import { getMarcas } from "../services/marcasServices";
 import { useState,useEffect } from "react";
 
+
 //#region
   const ContainerMarcas = styled.div`
     display: flex;

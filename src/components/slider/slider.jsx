@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { ComponentNavbar } from '../navbar/navbarHeader';
-import ImagePortada from '../../assets/perrito.png';
+import ImagePortada from '../../assets/perrito.gif';
 
 //#region
 const ContainerSlider = styled.div`
@@ -29,8 +29,8 @@ const SectionImage = styled.section`
     width: 100%;
     height: 100vh;
     @media(max-width: 768px){
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 100%;
     }
   `;
 
@@ -41,16 +41,19 @@ const StyledBorder = styled.div`
     height: 100vh;
     padding: 10px;
     @media(max-width: 768px){
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 100%;
     }
   `;
 
 const ContainerDescription = styled.div`
     display: flex;
     gap:20px;
+    width: 100%;
+    height: 100%;
     @media(max-width: 1000px){
       flex-direction: column-reverse
+      /* flex-direction: column; */
     }
   `;
 
@@ -72,8 +75,8 @@ const StyledTitle = styled.h2`
   font-size: 100px;
   text-transform: uppercase;
   @media(max-width:768px){
-    font-size: 80px;
-    line-height: 80px;
+    font-size: 50px;
+    line-height: 50px;
   }
 `;
 
@@ -82,7 +85,7 @@ const StyledDivisor = styled.hr`
   color: #ffffff;
   background-color: #ffffff;
   border:none;
-  width: 70%;
+  width: 50%;
 `;
 
 const StyledDescription = styled.p`
