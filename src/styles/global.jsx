@@ -30,11 +30,13 @@ export const reset = css`
   dd,
   hr {
     margin: 0;
+    list-style-type: none;
   }
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
   ul[role="list"],
   ol[role="list"] {
     list-style: none;
+    list-style-type: none;
   }
   /* Set core root defaults */
   html:focus-within {

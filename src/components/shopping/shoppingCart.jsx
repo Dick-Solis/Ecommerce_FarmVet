@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from "../../context/cartContext";
 import { NavLink } from "react-router-dom";
 import {AiOutlineShoppingCart} from "react-icons/ai";
+import { useEffect,useState } from "react";
 
 //#region
 const ContainerShopping = styled(NavLink)`
@@ -45,6 +45,12 @@ const ContainerShopping = styled(NavLink)`
 
 export function ShoppingCart() {
   const {cartItems} = useCart();
+  let { setCartItems } = useCart();
+
+  useEffect(() => {
+    const TotalRefreshCart = JSON.parse(sessionStorage.getItem('dataProductsCart'));
+    setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
+  },[])
 
   return (
     <ContainerShopping to='/cartShopping'>

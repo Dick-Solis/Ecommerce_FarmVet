@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { SectionCartProduct } from "../section/sectionCartProduct";
 import { ComponentFooter } from "../components/footer/footer";
 import { NavLink } from "react-router-dom";
+
 //#region
   const ContainerPage = styled.main`
     min-width: 100vh;
@@ -64,12 +65,6 @@ export function CartPage(){
           setHandleSection={setHandleSection}
         />
         )
-      // case 1:
-      //   return(
-      //     <CulqiSection
-      //       productsCart={productsCart}
-      //     />
-      //   )
       default:
         break;
     }
@@ -88,7 +83,6 @@ export function CartPage(){
         </StyledButton>
       </StyledNavLink>
     </StyldHeader>
-    {/* <WidgetShoppingCart/> */}
     <ContainerCart>
       {Section()}
     </ContainerCart>

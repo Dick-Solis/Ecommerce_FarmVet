@@ -8,6 +8,7 @@ width: ${(props) => props.ancho};
 gap: 4px;
 text-align: left;
 padding: 0 10px 0 0;
+height: ${(props) => props.alto};
 `;
 
 const TitleInput = styled.label`
@@ -49,9 +50,10 @@ export function ComponentInput({
   errors,
   onKeyUp,
   ancho,
+  alto
 }) {
   return (
-    <DivInput ancho={ancho}>
+    <DivInput ancho={ancho} alto={alto}>
       {label && <TitleInput htmlFor={id || name}>{label}</TitleInput>}
       <BodyInput
         type={type}

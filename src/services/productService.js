@@ -14,3 +14,8 @@ export async function showProductPage(id){
   const response =  await apiFetch(`/productos/showProductById/${id}`);
   return response;
 }
+
+export async function productCategory(){
+  const response = await apiFetch(`/categorias/allCategorias/20`);
+  return response;
+}

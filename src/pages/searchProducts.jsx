@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { searchProducts } from "../services/productService";
 import { CardProduct } from "../components/cards/cardProduct";
+import { ShoppingCart } from "../components/shopping/shoppingCart";
+import { useCart } from "../context/cartContext";
+
 
 //#region
   const ContentPage = styled.main`
@@ -33,14 +36,40 @@ import { CardProduct } from "../components/cards/cardProduct";
 export function SearchPageProducts(){
   const {busqueda} = useParams();
   const [dataSearch,setDataSearch] = useState([]);
+  const initialCart = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
+  const [productsCart, setProductsCart] = useState(initialCart);
+  let { setCartItems } = useCart();
 
   useEffect(()=>{
+    sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
+    const TotalRefreshCart = JSON.parse(sessionStorage.getItem('dataProductsCart'));
+    setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
     searchProducts(busqueda)
     .then((response) => {
       setDataSearch(response.data)
     })
+  },[productsCart])
 
-  },[])
+  function addProductCart(initialCart) {
+    const updatedCart = [...productsCart];
+    const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
+    if (existingProductIndex !== -1) {
+      updatedCart[existingProductIndex].cantidad += 1;
+    } else
+      updatedCart.push({
+        id_producto: initialCart.id_producto,
+        cantidad: 1,
+        nameProduct: initialCart.nombre,
+        imagen: initialCart.imagen,
+        precio: parseInt(initialCart.precio),
+        descuento: parseInt(initialCart.descuento),
+        en_descuento: initialCart.en_descuento,
+      });
+
+    setProductsCart(updatedCart);
+    const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
+    setCartItems(TotalProductCart);
+  }
 
   return(
     <ContentPage>
@@ -54,11 +83,16 @@ export function SearchPageProducts(){
               <CardProduct
                 key={index}
                 product={product}
+                onClick={() => {
+                  addProductCart(product)
+                }}
+
               />
             ))
           }
         </ContainerProductPage>
       </ProductsSearch>
+      <ShoppingCart/>
       <ComponentFooter/>
     </ContentPage>
   )

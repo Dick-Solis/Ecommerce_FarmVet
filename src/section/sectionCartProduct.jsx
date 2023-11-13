@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { CardProductCart } from '../components/cards/cardProductCart';
 import logoCompany from '../assets/LOGO-01.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// import Culqi from 'https://checkout.culqi.com/js/v4';
 
 //#region
 const SectionContent = styled.section`
@@ -69,8 +70,35 @@ const StyledMount = styled.p`
 
 export function SectionCartProduct({ setHandleSection, productsCart, setProductsCart }) {
   Culqi.publicKey = 'pk_test_b82c57f9c45befda';
-  const [activeModal,setActiveModal] = useState(false);
   let buttonCulqi;
+
+  function culqi() {
+    if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+      const token = Culqi.token.id;
+      console.log('Se ha creado un Token: ', token);
+      //En esta linea de codigo debemos enviar el "Culqi.token.id"
+      //hacia tu servidor con Ajax
+    } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+      const order = Culqi.order;
+      console.log('Se ha creado el objeto Order: ', order);
+
+    } else {
+      // Mostramos JSON de objeto error en consola
+      console.log('Error : ',Culqi.error);
+    }
+    console.log("si se ejecuta culqi()");
+  };
+  
+  useEffect(()=>{
+    culqi();
+    console.log("Este es Culqi", Culqi)
+    console.log("hay un refreshing");
+  },[])
+
+  document.addEventListener('payment.success', function (event) {
+    console.log('Pago exitoso', event.detail);
+  });
+
   Culqi.options({
     style: {
       logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
@@ -87,17 +115,18 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
   function TotalCart() {
     let TotalAmount = 0;
     for (const product of productsCart) {
-      TotalAmount += productsCart.en_descuento === 'SI' ? product.cantidad * (product.precio - (product.descuento * 100)) : product.cantidad * product.precio;
+      product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
     }
     return TotalAmount;
   }
 
   let TotalAmount = 0;
   for (const product of productsCart) {
-    TotalAmount += productsCart.en_descuento === 'SI' ? product.cantidad * (product.precio - (product.descuento * 100)) : product.cantidad * product.precio;
+    product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
   }
 
   function handleClick(e) {
+    console.log('esto sucede después de un click');
     Culqi.settings({
       title: 'Culqi Store',
       currency: 'PEN',
@@ -118,37 +147,18 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
     });
     Culqi.open();
     e.preventDefault();
+
     setTimeout(()=>{
       console.log('despues de 4 segundo');
       buttonCulqi = document.getElementById('culqi-js');
       setActiveModal(true);
     },3000)
   };
+  
+  
 
-
-  // const culqi = () => {
-  //   if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
-  //     const token = Culqi.token.id;
-  //     console.log('Se ha creado un Token: ', token);
-  //     //En esta linea de codigo debemos enviar el "Culqi.token.id"
-  //     //hacia tu servidor con Ajax
-  //   } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
-  //     const order = Culqi.order;
-  //     console.log('Se ha creado el objeto Order: ', order);
-
-  //   } else {
-  //     // Mostramos JSON de objeto error en consola
-  //     console.log('Error : ', Culqi.error);
-  //   }
-  // }
-
-  // culqi()
-  // if(buttonCulqi){
-  //   buttonCulqi.addEventListener('click', (e) => {
-  //     console.log('entré a la Ui');
-  //   });
-  // }
-  activeModal ? console.log(buttonCulqi): "";
+  // activeModal ? console.log(buttonCulqi): "";
+  // console.log(buttonCulqi);
 
   return (
     <SectionContent>
@@ -169,11 +179,11 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
         <TitleCart>Resumen de Compra</TitleCart>
         <ContentPrice>
           <h4>Subtotal</h4>
-          <StyledMount>S/{TotalCart()}.00</StyledMount>
+          <StyledMount>S/{TotalCart()}</StyledMount>
         </ContentPrice>
         <ContentPrice>
           <h4>Total</h4>
-          <StyledMount>S/{TotalCart()}.00</StyledMount>
+          <StyledMount>S/{TotalCart()}</StyledMount>
         </ContentPrice>
         <ButoonComprar onClick={handleClick} id='btn_pagar'>
           Ir a Comprar

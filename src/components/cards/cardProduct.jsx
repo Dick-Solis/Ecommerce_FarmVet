@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { BsFillStarFill } from 'react-icons/bs';
 import { AiFillHeart } from 'react-icons/ai';
 import { NavLink,Link } from 'react-router-dom';
-import { handleFavorite } from '../../events/favoriteEvent';
-import { useState } from 'react';
 
 //#region
 const CardContainer = styled.div`
@@ -115,12 +113,12 @@ export function CardProduct({activeHeart,handleFavorite,...props}) {
   return (
     <CardContainer>
       <ContentHeader>
-        {product.en_descuento != 'NO' && <StyledDescount>-{product.descuento * 100}%</StyledDescount>}
+        {product.en_descuento != 'NO' && <StyledDescount>-{parseInt(product.descuento)}%</StyledDescount>}
         {/* <StyledHeart onClick={()=>handleFavorite(product)}  style={{cursor:"pointer",color: activeHeart ? "#FF0000" : "#BAB4B4"}}/> */}
       </ContentHeader >
-      <Link to={`/products/${product.id_producto}`}>
+      <NavLink to={`/products/${product.id_producto}`}>
         <StyledImage src={product.imagen} alt={product.nombre}/>
-      </Link>
+      </NavLink>
       <StyledTitleProduct>{product.nombre}</StyledTitleProduct>
       {/* <ContentStars>
         {starIcons}{additionalIcons}
@@ -128,7 +126,7 @@ export function CardProduct({activeHeart,handleFavorite,...props}) {
       {/* <p>S/.{precio * (desceunto/100)}<s>Hello</s></p>  */}
       <ContentPrice>
         {product.en_descuento === 'SI' ? <Price><s>S/{product.precio}</s></Price> : <Price>S/{product.precio}</Price>}
-        {product.en_descuento === 'SI' && <PriceDescount>S/{product.precio-(product.precio * product.descuento)}</PriceDescount>}
+        {product.en_descuento === 'SI' && <PriceDescount>S/{product.precio-(product.precio * (product.descuento/100))}</PriceDescount>}
       </ContentPrice>
 
       <StyledButton onClick={props.onClick}>Añadir al Carrito</StyledButton>

@@ -36,8 +36,8 @@ const ContainerScrolling = styled.div`
   padding: 0 15px;
   gap: 15px;
   overflow-x: auto;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  /* overflow-x: hidden;
+  scroll-behavior: smooth; */
   :-webkit-scrollbar {
     display: none;
   }

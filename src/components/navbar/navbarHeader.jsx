@@ -2,10 +2,12 @@ import styled from "@emotion/styled";
 import { ComponentInput } from "../input/input";
 import { NavLink } from "react-router-dom";
 import { CardSearchProduct } from "../cards/cardSearchProduct";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "../spinner/spiner";
 import { searchProducts } from "../../services/productService";
 import { SkeletonCard } from "../skeleton/skeletonCard";
+import { ScrollHorizontal } from "../scroll/horizontaScroll";
+import { productCategory } from "../../services/productService";
 
 //#region
 const NavStyled = styled.nav`
@@ -82,24 +84,15 @@ const MenuItemLink = styled(NavLink)`
   align-items: center;
   font-weight:bold;
   text-decoration: none;
-  height: 100%;
   font-size: 1.1rem;
   cursor: pointer;
   color: #000000;
   transition: 0.3s ease-in-out;
-  @media(max-width:500px){
-    font-size: 12px;
-  }
-
-  &:hover {
-    color: #07388d;
-    text-decoration: none;
-    div {
-      svg {
-        fill: #23394d;
-      }
-    }
-  }`;
+  padding: 5px 10px;
+  border: 1px solid #005183;
+  border-radius: 20px;
+  width: max-content;
+  `;
 
 
 const MessageEmpty = styled.p`
@@ -109,7 +102,6 @@ const MessageEmpty = styled.p`
 
 
 const StyledButton = styled(NavLink)`
-  background-color: #ff0101;
   font-weight: bold;
   color: #ffffff;
   padding: 10px;
@@ -118,6 +110,7 @@ const StyledButton = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  background-color: red;
 `;
 //#endregion
 
@@ -125,7 +118,12 @@ export function ComponentNavbar() {
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [activeSkeletons, setActiveSkeletons] = useState(true);
+  const [categories , setCategories] = useState([]);
 
+  useEffect(()=>{
+      productCategory()
+        .then((response)=>(setCategories(response.data)))
+  },[]);
 
   function handleSearch(event){
     event.preventDefault();
@@ -166,12 +164,11 @@ export function ComponentNavbar() {
         
       </Container>
       <Container>
-        <StyledList>
-          <li><MenuItemLink to={'/products'}>Comidas</MenuItemLink></li>
-          <li><MenuItemLink to={'/products'}>Accesorios</MenuItemLink></li>
-          <li><MenuItemLink to={'/products'}>Medicamentos</MenuItemLink></li>
-          <li><MenuItemLink>Ofertas</MenuItemLink></li>
-        </StyledList>
+        <ScrollHorizontal scrollAmount={200}>
+          {categories.map(category => (
+            <li key={category.id_categoria}><MenuItemLink >{category.nombre}</MenuItemLink></li>
+          ))}
+        </ScrollHorizontal>
       </Container>
     </NavStyled>
   )

@@ -4,6 +4,8 @@ import { TitleSection } from '../components/Texts/text';
 import { useEffect, useState } from 'react';
 import { showAllProducts } from '../services/productService';
 import { useCart } from '../context/cartContext';
+import { SkeletonCard } from '../components/skeleton/skeletonCard';
+
 //#region
 const ContainerCards = styled.div`
     display: flex;
@@ -54,17 +56,22 @@ export function SectionProducts() {
   const [dataProducts, setDataProducts] = useState([]);
   const initialCart = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
   const [productsCart, setProductsCart] = useState(initialCart);
+  const [activeData, setActiveData] = useState(false);
   let { setCartItems } = useCart();
+  const arrayDeRepeticiones = new Array(10).fill(null);
 
   useEffect(() => {
-    sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));        
+    sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
     const TotalRefreshCart = JSON.parse(sessionStorage.getItem('dataProductsCart'));
     setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
     showAllProducts()
-    .then((response)=>setDataProducts(response.data));
+      .then((response) => {
+        setDataProducts(response.data)
+        setActiveData(true);
+      });
   }, [productsCart]);
 
-  const content = document.querySelector(".scrolling-container");
+  const content = document.querySelector(".js-products");
 
   function ButtonLeft() {
     content.scrollLeft -= 800;
@@ -88,6 +95,7 @@ export function SectionProducts() {
         imagen: initialCart.imagen,
         precio: parseInt(initialCart.precio),
         descuento: parseInt(initialCart.descuento),
+        en_descuento: initialCart.en_descuento,
       });
 
     setProductsCart(updatedCart);
@@ -104,16 +112,21 @@ export function SectionProducts() {
         <ButtonStyled onClick={ButtonRight}>👉</ButtonStyled>
       </ContainerHeader>
 
-      <ContainerScrolling className='scrolling-container'>
-        {dataProducts.map(product => (
-          <CardProduct key={product.id_producto}
-            product={product}
-            onClick={() => {
-              addProductCart(product)
-            }}
-            />
-        ))}
-      </ContainerScrolling>
+      {
+        <ContainerScrolling className='js-products'>
+          {activeData === false ? arrayDeRepeticiones.map((elemento, indice) => (
+            <SkeletonCard key={indice} ancho='400px' alto='350px' />
+          )) : 
+            dataProducts.map(product => (
+              <CardProduct key={product.id_producto}
+                product={product}
+                onClick={() => {
+                  addProductCart(product)
+                }}
+              />
+            ))
+          }
+        </ContainerScrolling>}
     </ContainerCards>
   )
 }

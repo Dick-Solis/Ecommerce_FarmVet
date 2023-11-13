@@ -9,7 +9,7 @@ const ContainerSlider = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 70px 5px 0 5px;
+    padding: 90px 5px 0 5px;
     color: #ffffff;
     height: max-content;
   `;
@@ -64,7 +64,8 @@ const SectionDescription = styled.section`
     flex-direction: column;
     width: 100%;
     @media(max-width: 768px){
-      align-items: flex-start;
+      /* align-items: flex-start; */
+      align-items: center;
     }
   `;
 
@@ -116,7 +117,7 @@ export function ComponentSlider() {
         </StyledBorder>
 
         <SectionDescription>
-          <StyledTitle>lo mejor  para <br/> tu mejor amigo</StyledTitle>
+          <StyledTitle><span style={{fontWeight: "100"}}>lo mejor  para </span><br/> tu mejor amigo</StyledTitle>
           <StyledDivisor/>
           <StyledDescription>Salud y Nutrición Animal</StyledDescription>
         </SectionDescription>
