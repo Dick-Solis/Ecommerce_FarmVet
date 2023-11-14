@@ -36,6 +36,7 @@ import { NavLink } from "react-router-dom";
     display: flex;
     margin-top: 20px;
     /* margin-bottom: 40px; */
+    width: 100%;
     height: 1000px;
   `;
 

@@ -12,7 +12,7 @@ export function MyRoutes(){
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/cartShopping" element={<CartPage/>}/>
-      <Route path="/products" element={<ProductPage/>}/>
+      <Route path="/category/:idCategory" element={<ProductPage/>}/>
       <Route path='/products/:id' element={<ShowProductPage/>}/>
       <Route path='/politicas_de_privacidad' element={<Article/>}/>
       <Route path='/productsSearch/:busqueda' element={<SearchPageProducts/>}/>

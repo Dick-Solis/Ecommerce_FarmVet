@@ -19,3 +19,8 @@ export async function productCategory(){
   const response = await apiFetch(`/categorias/allCategorias/20`);
   return response;
 }
+
+export async function getProductsCategory(idCategory,currentPage = 1,amountProducts = 10){
+  const response = await apiFetch(`/productos/showProductByCategory/${idCategory}/${amountProducts}?page=${currentPage}`);
+  return response;
+}

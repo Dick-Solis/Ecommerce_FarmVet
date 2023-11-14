@@ -7,7 +7,7 @@ import { showProductPage } from "../services/productService";
 import { Accordion } from "../components/acordions/acordion";
 import { ShoppingCart } from "../components/shopping/shoppingCart";
 import { useCart } from "../context/cartContext";
-
+import Message from "../components/alert/messageProduct";
 
 //#region
 const StyledPage = styled.main`
@@ -109,6 +109,8 @@ export function ShowProductPage() {
   function addProductCart(initialCart) {
     const updatedCart = [...productsCart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
+    const [showMessage, setShowMessage] = useState(false);
+
     if (existingProductIndex !== -1) {
       updatedCart[existingProductIndex].cantidad += 1;
     } else
@@ -125,11 +127,17 @@ export function ShowProductPage() {
     setProductsCart(updatedCart);
     const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
     setCartItems(TotalProductCart);
+    setShowMessage(true);
   }
+
+  const handleMessageClose = () => {
+    setShowMessage(false);
+  };
 
   return (
     <StyledPage>
       <ContainerPage>
+      <Message text="Se ha añadido un producto" show={showMessage} onClose={handleMessageClose} />
         <ContainerDescription>
           <ImageZoom image={dataProduct.imagen} activeData={activeData}/>
           <ContainerDataDescription>

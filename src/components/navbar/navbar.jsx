@@ -230,7 +230,7 @@ export function ComponentNavbarHeader() {
             </MenuItem>
             <MenuItem>
               <ContentButtonInter>
-                <StyledButton onClick={pageWhatssap}><IoLogoWhatsapp />Whatssap</StyledButton>
+                <StyledButton onClick={pageWhatssap}><IoLogoWhatsapp />WHATSAPP</StyledButton>
               </ContentButtonInter>
             </MenuItem>
           </Menu>

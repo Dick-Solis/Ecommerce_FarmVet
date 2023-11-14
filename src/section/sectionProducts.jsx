@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { showAllProducts } from '../services/productService';
 import { useCart } from '../context/cartContext';
 import { SkeletonCard } from '../components/skeleton/skeletonCard';
+import Message from '../components/alert/messageProduct';
 
 //#region
 const ContainerCards = styled.div`
@@ -59,6 +60,7 @@ export function SectionProducts() {
   const [activeData, setActiveData] = useState(false);
   let { setCartItems } = useCart();
   const arrayDeRepeticiones = new Array(10).fill(null);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
@@ -101,11 +103,16 @@ export function SectionProducts() {
     setProductsCart(updatedCart);
     const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
     setCartItems(TotalProductCart);
+    setShowMessage(true);
   }
 
+  const handleMessageClose = () => {
+    setShowMessage(false);
+  };
 
   return (
     <ContainerCards>
+      <Message text="Se ha añadido un producto" show={showMessage} onClose={handleMessageClose} />
       <ContainerHeader >
         <ButtonStyled onClick={ButtonLeft}>👈</ButtonStyled>
         <TitleSection>Productos</TitleSection>

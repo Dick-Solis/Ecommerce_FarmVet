@@ -6,7 +6,7 @@ import { searchProducts } from "../services/productService";
 import { CardProduct } from "../components/cards/cardProduct";
 import { ShoppingCart } from "../components/shopping/shoppingCart";
 import { useCart } from "../context/cartContext";
-
+import Message from "../components/alert/messageProduct";
 
 //#region
   const ContentPage = styled.main`
@@ -39,6 +39,7 @@ export function SearchPageProducts(){
   const initialCart = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
   const [productsCart, setProductsCart] = useState(initialCart);
   let { setCartItems } = useCart();
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(()=>{
     sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
@@ -69,10 +70,12 @@ export function SearchPageProducts(){
     setProductsCart(updatedCart);
     const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
     setCartItems(TotalProductCart);
+    setShowMessage(true);
   }
 
   return(
     <ContentPage>
+      <Message text="Se ha añadido un producto" show={showMessage} onClose={handleMessageClose} />
       <ProductsSearch>
         <TitleSection>
           Búsqueda de {busqueda}:
@@ -86,7 +89,6 @@ export function SearchPageProducts(){
                 onClick={() => {
                   addProductCart(product)
                 }}
-
               />
             ))
           }

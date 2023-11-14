@@ -84,7 +84,8 @@ const MenuItemLink = styled(NavLink)`
   align-items: center;
   font-weight:bold;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-family: 'Arial';
+  font-size: 1rem;
   cursor: pointer;
   color: #000000;
   transition: 0.3s ease-in-out;
@@ -92,6 +93,9 @@ const MenuItemLink = styled(NavLink)`
   border: 1px solid #005183;
   border-radius: 20px;
   width: max-content;
+  @media(max-width:768px){
+    font-size: 12px;
+  }
   `;
 
 
@@ -166,7 +170,7 @@ export function ComponentNavbar() {
       <Container>
         <ScrollHorizontal scrollAmount={200}>
           {categories.map(category => (
-            <li key={category.id_categoria}><MenuItemLink >{category.nombre}</MenuItemLink></li>
+            <li key={category.id_categoria}><MenuItemLink to={`/category/${category.id_categoria}`} >{category.nombre}</MenuItemLink></li>
           ))}
         </ScrollHorizontal>
       </Container>
