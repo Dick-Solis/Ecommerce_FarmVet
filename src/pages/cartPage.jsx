@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 //#region
   const ContainerPage = styled.main`
-    min-width: 100vh;
+    min-width: 100%;
   `;
 
   const StyldHeader = styled.header`

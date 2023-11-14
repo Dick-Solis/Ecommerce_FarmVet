@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { CardProductCart } from '../components/cards/cardProductCart';
-import logoCompany from '../assets/LOGO-01.png';
 import { useEffect, useState } from 'react';
 // import Culqi from 'https://checkout.culqi.com/js/v4';
 

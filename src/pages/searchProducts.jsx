@@ -73,9 +73,15 @@ export function SearchPageProducts(){
     setShowMessage(true);
   }
 
+
+  const handleMessageClose = () => {
+    setShowMessage(false);
+  };
+  
   return(
     <ContentPage>
       <Message text="Se ha añadido un producto" show={showMessage} onClose={handleMessageClose} />
+
       <ProductsSearch>
         <TitleSection>
           Búsqueda de {busqueda}:

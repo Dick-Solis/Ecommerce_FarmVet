@@ -93,6 +93,7 @@ export function ShowProductPage() {
   let { setCartItems } = useCart();
   const initialCart = JSON.parse(sessionStorage.getItem('dataProductsCart')) || [];
   const [productsCart, setProductsCart] = useState(initialCart);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
@@ -109,7 +110,7 @@ export function ShowProductPage() {
   function addProductCart(initialCart) {
     const updatedCart = [...productsCart];
     const existingProductIndex = updatedCart.findIndex((item) => item.id_producto === initialCart.id_producto);
-    const [showMessage, setShowMessage] = useState(false);
+    
 
     if (existingProductIndex !== -1) {
       updatedCart[existingProductIndex].cantidad += 1;

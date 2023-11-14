@@ -36,7 +36,7 @@ export function ContentSectionMarcas(){
 
   return(
     <ContainerMarcas id='marcas'>
-      <ScrollHorizontal scrollAmount={200} title={"Marcas Utilizadas"}>
+      <ScrollHorizontal scrollAmount={200} title={"Marcas"}>
         {dataMarcas.map(marca =>(
           <ImageStyled src={marca.imagen} alt={marca.nombre} key={marca.id_marca}/>
         ))}
