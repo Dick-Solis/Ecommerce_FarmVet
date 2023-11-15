@@ -11,6 +11,39 @@
     <div id="root"></div>
 
     <script src="https://checkout.culqi.com/js/v4"></script>
+    <script>
+      Culqi.publicKey = 'pk_test_b82c57f9c45befda';
+
+      function culqi() {
+        if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+          const token = Culqi.token.id;
+          console.log(token);
+        } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+          const order = Culqi.order;
+          console.log('Se ha creado el objeto Order: ', order);
+    
+        } else {
+          // Mostramos JSON de objeto error en consola
+          console.log('Error : ',Culqi.error);
+        }
+        console.log("si se ejecuta culqi()");
+      };
+
+
+      Culqi.options({
+        style: {
+          logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
+          bannerColor: '', // hexadecimal
+          buttonBackground: '#0071e1', // hexadecimal
+          menuColor: '#0071e1', // hexadecimal
+          linksColor: '#0071e1', // hexadecimal
+          buttonText: '', // texto que tomará el botón
+          buttonTextColor: '#ffffff', // hexadecimal
+          priceColor: '#0071e1' // hexadecimal
+        }
+      });
+
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

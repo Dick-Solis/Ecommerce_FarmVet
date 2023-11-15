@@ -3,12 +3,12 @@ import { ComponentInput } from "../input/input";
 import { NavLink } from "react-router-dom";
 import { CardSearchProduct } from "../cards/cardSearchProduct";
 import { useEffect, useState } from "react";
-import { Spinner } from "../spinner/spiner";
 import { searchProducts } from "../../services/productService";
 import { SkeletonCard } from "../skeleton/skeletonCard";
-import { ScrollHorizontal } from "../scroll/horizontaScroll";
 import { productCategory } from "../../services/productService";
-
+// import {ScrollAnimation} from "../scroll/scrollHorizontalInfinite";
+// import Scroller from "../scroll/scrollHorizontalInfinite";
+import { HorizontalInfinite } from "../scroll/scrollHorizontalInfinite";
 //#region
 const NavStyled = styled.nav`
     position: relative;
@@ -29,7 +29,7 @@ const NavStyled = styled.nav`
   `;
 
 const Container = styled.div`
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     :nth-of-type(1){
@@ -85,13 +85,11 @@ const MenuItemLink = styled(NavLink)`
   font-weight:bold;
   text-decoration: none;
   font-family: 'Arial';
-  font-size: 1rem;
+  font-size: 12px;
   cursor: pointer;
   color: #000000;
   transition: 0.3s ease-in-out;
   padding: 5px 10px;
-  border: 1px solid #005183;
-  border-radius: 20px;
   width: max-content;
   @media(max-width:768px){
     font-size: 12px;
@@ -115,6 +113,22 @@ const StyledButton = styled(NavLink)`
   text-decoration: none;
   text-align: center;
   background-color: red;
+`;
+
+const StyledLi = styled.li`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items:center;
+  border: 1px solid #005183;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 3px;
+`;
+
+const StyledImage = styled.img`
+  width: 40px;
+  height: 40px;
 `;
 //#endregion
 
@@ -168,11 +182,18 @@ export function ComponentNavbar() {
         
       </Container>
       <Container>
-        <ScrollHorizontal scrollAmount={200}>
+        <HorizontalInfinite>
           {categories.map(category => (
-            <li key={category.id_categoria}><MenuItemLink to={`/category/${category.id_categoria}`} >{category.nombre}</MenuItemLink></li>
+            // <NavLink>
+              <StyledLi key={category.id_categoria}>
+                <NavLink  to={`/category/${category.id_categoria}`}>
+                  <StyledImage src={category.imagen} alt={category.nombre}/>
+                </NavLink>
+                <MenuItemLink to={`/category/${category.id_categoria}`} >{category.nombre}</MenuItemLink>
+              </StyledLi>
+            // </NavLink>
           ))}
-        </ScrollHorizontal>
+        </HorizontalInfinite>
       </Container>
     </NavStyled>
   )

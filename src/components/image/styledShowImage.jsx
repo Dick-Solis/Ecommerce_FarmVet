@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import { useRef } from 'react';
 import { Spinner } from "../spinner/spiner";
 import { SkeletonCard } from "../skeleton/skeletonCard";
+import marcaAgua from '../../assets/marcaAgua.png';
 
 //#region
 const ContainerZoom = styled.div` 
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 50%;
   @media(max-width:768px){
     width: 100%;
@@ -17,7 +18,16 @@ const ContainerZoom = styled.div`
 
 const StyledImage = styled.img`
   position: relative;
+  /* background-color: #ffffff; */
+  background-image: url(${marcaAgua});
+  background-repeat: repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: contain;
+  border-radius: 5px;
+  padding: 20px;
   overflow: hidden;
+  cursor: zoom-in;
   display: block;
   width: 400px;
 `;
@@ -27,6 +37,7 @@ const ZoomedArea = styled.div`
   width: 150px; /* Ajusta el tamaño de la imagen grande */
   height: 150px; /* Ajusta el tamaño de la imagen grande */
   border: 2px solid #ffffff;
+  border-radius: 50%;
   display: none;
   pointer-events: none; /* Evita interferencia con eventos de mouse */
 `;

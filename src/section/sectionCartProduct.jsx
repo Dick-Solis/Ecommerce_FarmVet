@@ -68,49 +68,6 @@ const StyledMount = styled.p`
 //#endregion
 
 export function SectionCartProduct({ setHandleSection, productsCart, setProductsCart }) {
-  Culqi.publicKey = 'pk_test_b82c57f9c45befda';
-  let buttonCulqi;
-
-  function culqi() {
-    if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
-      const token = Culqi.token.id;
-      console.log('Se ha creado un Token: ', token);
-      //En esta linea de codigo debemos enviar el "Culqi.token.id"
-      //hacia tu servidor con Ajax
-    } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
-      const order = Culqi.order;
-      console.log('Se ha creado el objeto Order: ', order);
-
-    } else {
-      // Mostramos JSON de objeto error en consola
-      console.log('Error : ',Culqi.error);
-    }
-    console.log("si se ejecuta culqi()");
-  };
-  
-  useEffect(()=>{
-    culqi();
-    console.log("Este es Culqi", Culqi)
-    console.log("hay un refreshing");
-  },[])
-
-  document.addEventListener('payment.success', function (event) {
-    console.log('Pago exitoso', event.detail);
-  });
-
-  Culqi.options({
-    style: {
-      logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
-      bannerColor: '', // hexadecimal
-      buttonBackground: '#0071e1', // hexadecimal
-      menuColor: '#0071e1', // hexadecimal
-      linksColor: '#0071e1', // hexadecimal
-      buttonText: '', // texto que tomará el botón
-      buttonTextColor: '#ffffff', // hexadecimal
-      priceColor: '#0071e1' // hexadecimal
-    }
-  });
-
   function TotalCart() {
     let TotalAmount = 0;
     for (const product of productsCart) {
@@ -146,18 +103,7 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
     });
     Culqi.open();
     e.preventDefault();
-
-    setTimeout(()=>{
-      console.log('despues de 4 segundo');
-      buttonCulqi = document.getElementById('culqi-js');
-      setActiveModal(true);
-    },3000)
   };
-  
-  
-
-  // activeModal ? console.log(buttonCulqi): "";
-  // console.log(buttonCulqi);
 
   return (
     <SectionContent>
@@ -175,7 +121,7 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
         }
       </SectionCardsCart>
       {TotalCart() === 0 ? "" : <SectionContentCart>
-        <TitleCart>Resumen de Compra</TitleCart>
+        <TitleCart>Resumen de Compras</TitleCart>
         <ContentPrice>
           <h4>Subtotal</h4>
           <StyledMount>S/{TotalCart()}</StyledMount>
@@ -184,7 +130,7 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
           <h4>Total</h4>
           <StyledMount>S/{TotalCart()}</StyledMount>
         </ContentPrice>
-        <ButoonComprar onClick={handleClick} id='btn_pagar'>
+        <ButoonComprar onClick={handleClick} >
           Ir a Comprar
         </ButoonComprar>
       </SectionContentCart>}

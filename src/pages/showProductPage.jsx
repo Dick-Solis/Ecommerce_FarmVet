@@ -26,6 +26,7 @@ const ContainerPage = styled.section`
 const ContainerDescription = styled.section`
   display: flex;
   gap: 0 50px;
+  padding: 20px;
   @media(max-width: 768px){
     flex-wrap: wrap;
   }

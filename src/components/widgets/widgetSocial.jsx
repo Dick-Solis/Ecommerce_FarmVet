@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 import { BiLogoFacebookCircle } from "react-icons/bi";
-import { FaWhatsapp } from "react-icons/fa";
-import { BsInstagram } from "react-icons/bs";
-import { BsTwitter } from "react-icons/bs";
-import { AiFillYoutube } from "react-icons/ai";
-import { FaTiktok } from "react-icons/fa";
 
 
 export const Navar2 = () => {

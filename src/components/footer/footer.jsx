@@ -66,7 +66,7 @@ export function ComponentFooter(){
     <ContentFooter>
       <StyledFooter>
         <SectionFooter>
-          <StyledTitle>Atención al CLiente</StyledTitle>
+          <StyledTitle>Atención al Cliente</StyledTitle>
           <StyledNavLink to='/politicas_de_privacidad'>Política de Privacidad</StyledNavLink>
           <p>Libro de Reclamaciones</p>
           <StyledNavLink to='/reclamaciones'>
