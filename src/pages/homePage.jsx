@@ -35,7 +35,7 @@ function HomePage(){
       <ContentPage>
         <SectionProducts/>
         <SectionCardContacts/>
-        <ContentSectionMarcas/>
+        {/* <ContentSectionMarcas/> */}
       </ContentPage>
       <ComponentFooter/>
       <ShoppingCart/>

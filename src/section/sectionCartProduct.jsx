@@ -82,7 +82,6 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
   }
 
   function handleClick(e) {
-    console.log('esto sucede después de un click');
     Culqi.settings({
       title: 'Culqi Store',
       currency: 'PEN',

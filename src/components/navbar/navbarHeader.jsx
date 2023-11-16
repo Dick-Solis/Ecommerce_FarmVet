@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 import { searchProducts } from "../../services/productService";
 import { SkeletonCard } from "../skeleton/skeletonCard";
 import { productCategory } from "../../services/productService";
-// import {ScrollAnimation} from "../scroll/scrollHorizontalInfinite";
-// import Scroller from "../scroll/scrollHorizontalInfinite";
-import { HorizontalInfinite } from "../scroll/scrollHorizontalInfinite";
+import { ScrollHorizontal } from "../scroll/horizontaScroll";
+import marcaAgua from '../../assets/marcaAgua.png'
 //#region
 const NavStyled = styled.nav`
     position: relative;
@@ -90,7 +89,9 @@ const MenuItemLink = styled(NavLink)`
   color: #000000;
   transition: 0.3s ease-in-out;
   padding: 5px 10px;
-  width: max-content;
+  min-width: max-content;
+  border: 2px solid #005B69;
+  border-radius: 10px;
   @media(max-width:768px){
     font-size: 12px;
   }
@@ -127,8 +128,8 @@ const StyledLi = styled.li`
 `;
 
 const StyledImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
 `;
 //#endregion
 
@@ -182,18 +183,15 @@ export function ComponentNavbar() {
         
       </Container>
       <Container>
-        <HorizontalInfinite>
+        <ScrollHorizontal>
           {categories.map(category => (
-            // <NavLink>
-              <StyledLi key={category.id_categoria}>
-                <NavLink  to={`/category/${category.id_categoria}`}>
+               <StyledLi key={category.id_categoria}>
+                <MenuItemLink  to={`/category/${category.id_categoria}`} key={category.id_categoria}>
                   <StyledImage src={category.imagen} alt={category.nombre}/>
-                </NavLink>
-                <MenuItemLink to={`/category/${category.id_categoria}`} >{category.nombre}</MenuItemLink>
+                </MenuItemLink>
               </StyledLi>
-            // </NavLink>
           ))}
-        </HorizontalInfinite>
+        </ScrollHorizontal>
       </Container>
     </NavStyled>
   )

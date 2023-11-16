@@ -33,17 +33,27 @@ const ButtonStyled = styled.span`
 const ContainerScrolling = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  padding: 0 15px;
+  padding: 10px 15px;
   gap: 15px;
-  overflow-x: auto;
-  /* overflow-x: hidden;
-  scroll-behavior: smooth; */
-  :-webkit-scrollbar {
-    display: none;
+  overflow-x: scroll;
+  ::-webkit-scrollbar{
+    display: flex;
+    height: 7px;
   }
+  ::-webkit-scrollbar-thumb{
+    background-color: #115f93;
+    border-radius: 15px;
+  }
+  ::-webkit-scrollbar-track-piece:horizontal{
+    background-color: transparent;
+  }
+
   @media (max-width: 768px) {
     overflow-x: scroll;
     scrollbar-width: thin;
+    ::-webkit-scrollbar{
+    display: none;
+  }
   }
 `;
 
@@ -67,4 +77,4 @@ export function ScrollHorizontal({ title,children, scrollAmount = 800 }) {
       </ContainerScrolling>
     </ContainerScrool>
   );
-}
+};
