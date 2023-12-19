@@ -9,15 +9,26 @@
   </head>
   <body>
     <div id="root"></div>
-
+    
     <script src="https://checkout.culqi.com/js/v4"></script>
     <script>
-      Culqi.publicKey = 'pk_test_b82c57f9c45befda';
-
+      
+      Culqi.publicKey = 'pk_live_a92bd18b1cac3824';
       function culqi() {
-        if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+        if (Culqi.token) {
           const token = Culqi.token.id;
-          console.log(token);
+          const email = Culqi.token.email;
+          const dataProducts = JSON.parse(sessionStorage.getItem('dataProductsCart'));
+          console.log("token:»»»»»»",token);
+          let TotalAmount = 0;
+          for (const product of dataProducts) {
+            product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
+          }
+          const dataFormat = {source_id:token,email:email,amount:TotalAmount*100};
+          async function postCulqi(){
+            const response = await apiFetch('/culqui/procesar/prueba', {body: JSON.stringify(dataFormat)})
+            console.log(response)
+          }
         } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
           const order = Culqi.order;
           console.log('Se ha creado el objeto Order: ', order);
@@ -26,7 +37,6 @@
           // Mostramos JSON de objeto error en consola
           console.log('Error : ',Culqi.error);
         }
-        console.log("si se ejecuta culqi()");
       };
 
 

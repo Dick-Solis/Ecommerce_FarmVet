@@ -36,8 +36,9 @@ import { NavLink } from "react-router-dom";
     display: flex;
     margin-top: 20px;
     /* margin-bottom: 40px; */
+    max-height: 1000px;
     width: 100%;
-    height: 1000px;
+    
   `;
 
   const StyledNavLink = styled(NavLink)`
@@ -72,7 +73,7 @@ export function CartPage(){
   }
 
   return(
-  <ContainerPage>
+  <h1>
     <StyldHeader>
       <TitleSection>
         Carrito de Compras
@@ -88,6 +89,6 @@ export function CartPage(){
       {Section()}
     </ContainerCart>
     <ComponentFooter/>
-  </ContainerPage>
+  </h1>
   )
 }

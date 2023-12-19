@@ -99,11 +99,14 @@ export function ShowProductPage() {
   useEffect(() => {
     sessionStorage.setItem('dataProductsCart', JSON.stringify(productsCart));
     const TotalRefreshCart = JSON.parse(sessionStorage.getItem('dataProductsCart'));
-    setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
+    if(TotalRefreshCart.length > 0){
+      setCartItems(TotalRefreshCart.reduce((total, objeto) => total + objeto.cantidad, 0));
+    }
     showProductPage(id)
       .then((response) => {
         setActiveData(false)
         setDataProduct(response)
+        console.log(response)
       });
   },[productsCart])
 
@@ -127,8 +130,10 @@ export function ShowProductPage() {
       });
 
     setProductsCart(updatedCart);
-    const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
-    setCartItems(TotalProductCart);
+    if(updatedCart.length > 0){
+      const TotalProductCart = updatedCart.reduce((total, objeto) => total + objeto.cantidad, 0);
+      setCartItems(TotalProductCart);
+    }
     setShowMessage(true);
   }
 
@@ -163,7 +168,7 @@ export function ShowProductPage() {
               <StyleText>Modelo: {dataProduct.modelo}</StyleText>
               <StyleText>Unidad de Medida: {dataProduct.unidad_de_medida}</StyleText>
               <StyleText>Marca: {dataProduct.marca}</StyleText>
-              <StyleText>Código: {dataProduct.código_interno}</StyleText>
+              <StyleText>Código: {dataProduct.codigo_interno}</StyleText>
             </Accordion>
             </div>
           </ContainerDataDescription>

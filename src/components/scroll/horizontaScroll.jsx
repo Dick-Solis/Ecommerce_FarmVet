@@ -36,6 +36,7 @@ const ContainerScrolling = styled.div`
   padding: 10px 15px;
   gap: 15px;
   overflow-x: scroll;
+  scroll-behavior: smooth;
   ::-webkit-scrollbar{
     display: flex;
     height: 7px;

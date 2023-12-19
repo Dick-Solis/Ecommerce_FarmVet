@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ScrollHorizontal } from "../components/scroll/horizontaScroll";
 import { getMarcas } from "../services/marcasServices";
 import { useState,useEffect } from "react";
-
+import { SkeletonCard } from "../components/skeleton/skeletonCard";
 
 //#region
   const ContainerMarcas = styled.div`
@@ -17,18 +17,13 @@ import { useState,useEffect } from "react";
   const ImageStyled = styled.img`
     width: 150px;
     height: 100px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease-in-out;
-    &:hover{
-      filter: grayscale(0%);
-    }
   `;
 
 //#endregion
 
 export function ContentSectionMarcas(){
   const [dataMarcas,setDataMarcas] = useState([]);
-
+  const arrayDeRepeticiones = new Array(10).fill(5);
   useEffect(() =>{
     getMarcas()
       .then(response => setDataMarcas(response));
@@ -37,7 +32,9 @@ export function ContentSectionMarcas(){
   return(
     <ContainerMarcas id='marcas'>
       <ScrollHorizontal scrollAmount={200} title={"Marcas"}>
-        {dataMarcas.map(marca =>(
+        {dataMarcas.length === 0 ? arrayDeRepeticiones.map((elemento, indice) => (
+          <SkeletonCard key={indice} ancho='250px' alto='150px' />
+        )):dataMarcas.map(marca =>(
           <ImageStyled src={marca.imagen} alt={marca.nombre} key={marca.id_marca}/>
         ))}
       </ScrollHorizontal>

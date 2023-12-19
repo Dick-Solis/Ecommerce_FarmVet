@@ -62,7 +62,7 @@ const StyledButoonControl = styled.button`
   height: 30px;
   background-color: #00749b;
   padding: 5px;
-  font-size: 25px;
+  font-size: 15px;
   font-weight: bold;
   color: #ffffff;
   border-radius: 50%;

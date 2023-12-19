@@ -6,7 +6,6 @@ import { Article } from "../pages/privacidadPage";
 import { ShowProductPage } from "../pages/showProductPage";
 import { SearchPageProducts } from "../pages/searchProducts";
 import { ReclamacionesPage } from "../pages/reclamacionesPage";
-
 export function MyRoutes(){
   return(
     <Routes>

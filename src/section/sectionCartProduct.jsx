@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { CardProductCart } from '../components/cards/cardProductCart';
-import { useEffect, useState } from 'react';
-// import Culqi from 'https://checkout.culqi.com/js/v4';
 
 //#region
 const SectionContent = styled.section`
@@ -11,6 +9,7 @@ const SectionContent = styled.section`
     flex-wrap: wrap;
     gap: 20px;
     padding: 10px;
+    font-size: 17px;
   `;
 
 const SectionCardsCart = styled.div`

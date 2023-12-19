@@ -86,7 +86,6 @@ export const global = css`
     display: flex;
     flex-wrap: wrap;
     background-color: #3bb5fc;
-    font-size: 1rem;
     font-family: 'Playpen Sans','Montserrat';
     color: ${colors.gray.dark};
     font-weight: 400;

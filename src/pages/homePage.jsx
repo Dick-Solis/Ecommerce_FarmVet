@@ -15,6 +15,7 @@ import { useEffect,useState } from "react";
     justify-content: center;
     align-items: center;
     gap: 20px;
+    
   `;
 
   const ContentPage  = styled.section`
@@ -23,6 +24,7 @@ import { useEffect,useState } from "react";
     flex-direction: column;
     width: 100%;
     max-width: 1070px;
+    height: max-content;
     gap: 15px;
   `;
 //#endregion
@@ -35,7 +37,7 @@ function HomePage(){
       <ContentPage>
         <SectionProducts/>
         <SectionCardContacts/>
-        {/* <ContentSectionMarcas/> */}
+        <ContentSectionMarcas/>
       </ContentPage>
       <ComponentFooter/>
       <ShoppingCart/>

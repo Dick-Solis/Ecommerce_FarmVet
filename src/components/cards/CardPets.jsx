@@ -47,8 +47,6 @@ const StyledDescription = styled.h5`
 //#endregion
 
 export function CardPets({imagen="",title="",description=""}) {
-
-
   return (
     <ContainerCard>
       <StyledImage src={imagen} />

@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: ${props => props.tamaño};
     color: white;
     padding: 10px;
     border-radius: 50px;
@@ -19,10 +19,10 @@ import { NavLink } from "react-router-dom";
   `;
 //#endregion
 
-export function SocialIcon({icon="",color="",link=""}){
+export function SocialIcon({icon="",color="",link="",tamaño="25px"}){
   return(
     <NavLink to={link}>
-      <StyledIcon color={color}>
+      <StyledIcon color={color} tamaño={tamaño}>
         {icon}
       </StyledIcon>
     </NavLink>

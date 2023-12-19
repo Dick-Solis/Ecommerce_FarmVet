@@ -9,7 +9,8 @@ import libro from '../../assets/libro.png';
     width: 100%;
     display: flex;
     flex-direction: column;
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
   `;
 
   const StyledFooter = styled.section`

@@ -5,7 +5,9 @@ import phone from '../assets/phone.svg';
 import ubication from '../assets/ubication.svg';
 import { TitleSection } from '../components/Texts/text';
 import SectionMap from './sectionMap';
-
+import logo1 from "../assets/DATOS-FARMAVET.jpg";
+import logo2 from "../assets/DATOS-FARMAVET.01.jpg";
+import logo3 from "../assets/DATOS-FARMAVET.02.jpg";
 
 //#region
 const ContainerContact = styled.section`
@@ -41,12 +43,13 @@ const StyledContent = styled.section`
   }
 `;
 
-const ContentTitles = styled.div``;
-
 const StyledImage = styled.img`
   width: 250px;
-  height: 250px;
+  height: 150px;
 `;
+
+const ContentTitles = styled.div``;
+
 //#endregion
 
 function SectionCardContacts() {
@@ -55,11 +58,9 @@ function SectionCardContacts() {
       <ContentTitles>
         <TitleSection>Contáctanos</TitleSection>
       </ContentTitles>
-      <StyledContent>
-        
+      <StyledContent>    
         <ContainerCardContact>
-          {/* <ScrollHorizontal scrollAmount={200}> */}
-            <CardContact image={calendar}>
+            {/* <CardContact image={calendar}>
               <StyledDescription>Lunes - Sabado</StyledDescription>
               <StyledDescription>9:00 am - 19:00 pm</StyledDescription>
             </CardContact>
@@ -70,9 +71,10 @@ function SectionCardContacts() {
             <CardContact image={ubication}>
               <StyledDescription>Huánuco - Perú</StyledDescription>
               <StyledDescription>Jirón Abtao #443</StyledDescription>
-            </CardContact>
-
-          {/* </ScrollHorizontal> */}
+            </CardContact> */}
+            <StyledImage src={logo1} alt="" />
+            <StyledImage src={logo2} alt="" />
+            <StyledImage src={logo3} alt="" />
         </ContainerCardContact>
         <SectionMap/>
       </StyledContent>

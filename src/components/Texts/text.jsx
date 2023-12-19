@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
     font-family: 'Playpen Sans';
     color: #ffffff;
     text-align: center;
+    font-size: 18px;
   `;
 
   const StyledDescription = styled.h4`

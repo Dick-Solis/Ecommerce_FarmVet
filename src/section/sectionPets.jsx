@@ -24,9 +24,9 @@ export function SectionPets(){
           key={animal.id} 
           imagen={animal.imagen}
           title={animal.title} 
-          description={animal.description} 
+          description={animal.description}
         />
-      ))}  
+      ))}
     </SectionCardPets>
   )
 }

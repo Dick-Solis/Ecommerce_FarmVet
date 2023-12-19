@@ -40,7 +40,7 @@ const Container = styled.div`
   `;
 
 const ContainerSearchProducts = styled.div`
-  position: absolute;
+  position: relative;
   top: 100%;
   left: 0;
   margin-top: 10px;
