@@ -1,59 +1,70 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href='./src/assets/patitaPerro.png' />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FarmaVet</title>
-    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    
-    <script src="https://checkout.culqi.com/js/v4"></script>
-    <script>
-      
-      Culqi.publicKey = 'pk_live_a92bd18b1cac3824';
-      function culqi() {
-        if (Culqi.token) {
-          const token = Culqi.token.id;
-          const email = Culqi.token.email;
-          const dataProducts = JSON.parse(sessionStorage.getItem('dataProductsCart'));
-          console.log("token:»»»»»»",token);
-          let TotalAmount = 0;
-          for (const product of dataProducts) {
-            product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
-          }
-          const dataFormat = {source_id:token,email:email,amount:TotalAmount*100};
-          async function postCulqi(){
-            const response = await apiFetch('/culqui/procesar/prueba', {body: JSON.stringify(dataFormat)})
-            console.log(response)
-          }
-        } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
-          const order = Culqi.order;
-          console.log('Se ha creado el objeto Order: ', order);
-    
-        } else {
-          // Mostramos JSON de objeto error en consola
-          console.log('Error : ',Culqi.error);
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href='./src/assets/patitaPerro.png' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmaVet</title>
+  <meta name="description"
+    content="Somos una empresa dedicada a la distribución , venta y servicio de productos veterinarios de la mas alta calidad integrada por Médicos Veterinarios y Zootecnistas.">
+
+  <meta property="og:title" content="FARMAVET Huánuco">
+  <meta property="og:description" content="Somos una empresa dedicada a la distribución , venta y servicio de productos veterinarios de la mas alta calidad integrada por Médicos Veterinarios y Zootecnistas.">
+  <meta property="og:image" content="./src/assets/LOGO-01.png"/>
+  <meta property="og:image:alt" content="Logo de la Empresa FARMAVET"/>
+
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://checkout.culqi.com/js/v4"></script>
+  <script>
+
+    Culqi.publicKey = 'pk_live_a92bd18b1cac3824';
+    function culqi() {
+      if (Culqi.token) {
+        const token = Culqi.token.id;
+        const email = Culqi.token.email;
+        const dataProducts = JSON.parse(sessionStorage.getItem('dataProductsCart'));
+        console.log("token:»»»»»»", token);
+        let TotalAmount = 0;
+        for (const product of dataProducts) {
+          product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento / 100)) : TotalAmount += product.cantidad * product.precio;
         }
-      };
-
-
-      Culqi.options({
-        style: {
-          logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
-          bannerColor: '', // hexadecimal
-          buttonBackground: '#0071e1', // hexadecimal
-          menuColor: '#0071e1', // hexadecimal
-          linksColor: '#0071e1', // hexadecimal
-          buttonText: '', // texto que tomará el botón
-          buttonTextColor: '#ffffff', // hexadecimal
-          priceColor: '#0071e1' // hexadecimal
+        const dataFormat = { source_id: token, email: email, amount: TotalAmount * 100 };
+        async function postCulqi() {
+          const response = await apiFetch('/culqui/procesar/prueba', { body: JSON.stringify(dataFormat) })
+          console.log(response)
         }
-      });
+      } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+        const order = Culqi.order;
+        console.log('Se ha creado el objeto Order: ', order);
 
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+      } else {
+        // Mostramos JSON de objeto error en consola
+        console.log('Error : ', Culqi.error);
+      }
+    };
+
+
+    Culqi.options({
+      style: {
+        logo: 'https://res.cloudinary.com/dstzuz2wo/image/upload/v1699658527/recursos-grupo-rino/farmavet-app/pet-images/qpk5cqxeuuxqwie43yu9.png',
+        bannerColor: '', // hexadecimal
+        buttonBackground: '#0071e1', // hexadecimal
+        menuColor: '#0071e1', // hexadecimal
+        linksColor: '#0071e1', // hexadecimal
+        buttonText: '', // texto que tomará el botón
+        buttonTextColor: '#ffffff', // hexadecimal
+        priceColor: '#0071e1' // hexadecimal
+      }
+    });
+
+  </script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

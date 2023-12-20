@@ -29,7 +29,8 @@ const SectionCardsCart = styled.div`
 
 const SectionContentCart = styled.div`
     width: 300px;
-    height: 200px;
+    height: 220px;
+    border-radius: 15px;
     background-color: #ffffff;
     text-align: center;
     display: flex;
