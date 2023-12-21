@@ -113,7 +113,7 @@ export function CardProduct({activeHeart,handleFavorite,...props}) {
   return (
     <CardContainer>
       <ContentHeader>
-        {product.en_descuento != 'NO' && <StyledDescount>-{parseInt(product.descuento)}%</StyledDescount>}
+        {product.en_descuento != 'NO' && <StyledDescount>-{(product.descuento)}%</StyledDescount>}
         {/* <StyledHeart onClick={()=>handleFavorite(product)}  style={{cursor:"pointer",color: activeHeart ? "#FF0000" : "#BAB4B4"}}/> */}
       </ContentHeader >
       <NavLink to={`/products/${product.id_producto}`}>

@@ -110,7 +110,7 @@ export function CardProductCart({index,productsCart,setProductsCart,product}) {
       <ContentCard>
         <div>
           <h5>Precio</h5>
-          {product.en_descuento === 'SI' ? <TextProduct><s>S/{product.precio}</s></TextProduct> : <TextProduct>S/{product.precio}.00</TextProduct>}
+          {product.en_descuento === 'SI' ? <TextProduct><s>S/{product.precio}</s></TextProduct> : <TextProduct>S/{product.precio}</TextProduct>}
           {product.en_descuento === 'SI' ? <TextProduct>{product.precio -(product.precio * (product.descuento/100))}</TextProduct> : ""}
         </div>
         <div>

@@ -124,8 +124,8 @@ export function ShowProductPage() {
         cantidad: 1,
         nameProduct: initialCart.nombre,
         imagen: initialCart.imagen,
-        precio: parseInt(initialCart.precio),
-        descuento: parseInt(initialCart.descuento),
+        precio: (initialCart.precio),
+        descuento: (initialCart.descuento),
         en_descuento: initialCart.en_descuento,
       });
 
