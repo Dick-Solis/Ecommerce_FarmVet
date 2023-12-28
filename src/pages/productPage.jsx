@@ -23,7 +23,6 @@ import Message from "../components/alert/messageProduct";
   const ContentCards = styled.section`
     display: flex;
     width: 100%;
-    min-height: 900px;
     justify-content: center;
     align-items: flex-start;
     gap: 15px;

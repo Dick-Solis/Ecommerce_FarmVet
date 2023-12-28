@@ -4,19 +4,14 @@ import { CardProductCart } from '../components/cards/cardProductCart';
 //#region
 const SectionContent = styled.section`
     width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 10px;
-    font-size: 17px;
+    min-height: 1000px;
   `;
 
 const SectionCardsCart = styled.div`
     display: flex;
     flex-direction: column;
     overflow: auto;
-    height: 700px ;
+    max-height: 700px ;
     gap: 20px;
     ::-webkit-scrollbar {
       width: 12px;
@@ -65,20 +60,31 @@ const ButoonComprar = styled.button`
 const StyledMount = styled.p`
     font-weight: bold;
   `;
+
+const ContentPage = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:20px;
+    padding: 10px;
+    font-size: 17px;
+`;
+
 //#endregion
 
 export function SectionCartProduct({ setHandleSection, productsCart, setProductsCart }) {
   function TotalCart() {
     let TotalAmount = 0;
     for (const product of productsCart) {
-      product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
+      product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento / 100)) : TotalAmount += product.cantidad * product.precio;
     }
     return TotalAmount;
   }
 
   let TotalAmount = 0;
   for (const product of productsCart) {
-    product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento/100)) :  TotalAmount += product.cantidad * product.precio;
+    product.en_descuento === 'SI' ? TotalAmount += product.cantidad * (product.precio - (product.precio * product.descuento / 100)) : TotalAmount += product.cantidad * product.precio;
   }
 
   function handleClick(e) {
@@ -106,33 +112,37 @@ export function SectionCartProduct({ setHandleSection, productsCart, setProducts
 
   return (
     <SectionContent>
-      <SectionCardsCart>
-        {
-          productsCart.map((product, index) => (
-            <CardProductCart
-              key={product.id_producto}
-              product={product}
-              setProductsCart={setProductsCart}
-              productsCart={productsCart}
-              index={index}
-            />
-          ))
-        }
-      </SectionCardsCart>
-      {TotalCart() === 0 ? "" : <SectionContentCart>
-        <TitleCart>Resumen de Compras</TitleCart>
-        <ContentPrice>
-          <h4>Subtotal</h4>
-          <StyledMount>S/{TotalCart()}</StyledMount>
-        </ContentPrice>
-        <ContentPrice>
-          <h4>Total</h4>
-          <StyledMount>S/{TotalCart()}</StyledMount>
-        </ContentPrice>
-        <ButoonComprar onClick={handleClick} >
-          Ir a Comprar
-        </ButoonComprar>
-      </SectionContentCart>}
+      <ContentPage>
+        <SectionCardsCart>
+          {
+            productsCart.map((product, index) => (
+              <CardProductCart
+                key={product.id_producto}
+                product={product}
+                setProductsCart={setProductsCart}
+                productsCart={productsCart}
+                index={index}
+              />
+            ))
+          }
+        </SectionCardsCart>
+        {TotalCart() === 0 ? "" : <SectionContentCart>
+          <TitleCart>Resumen de Compras</TitleCart>
+          <ContentPrice>
+            <h4>Subtotal</h4>
+            <StyledMount>S/{TotalCart()}</StyledMount>
+          </ContentPrice>
+          <ContentPrice>
+            <h4>Total</h4>
+            <StyledMount>S/{TotalCart()}</StyledMount>
+          </ContentPrice>
+          <ButoonComprar onClick={handleClick} >
+            Ir a Comprar
+          </ButoonComprar>
+        </SectionContentCart>}
+
+      </ContentPage>
+
     </SectionContent>
   )
 }

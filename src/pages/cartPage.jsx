@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { SectionCartProduct } from "../section/sectionCartProduct";
 import { ComponentFooter } from "../components/footer/footer";
 import { NavLink } from "react-router-dom";
+import { WindowAlert } from "../components/modal/modals";
+
 
 //#region
   const ContainerPage = styled.main`
@@ -72,8 +74,26 @@ export function CartPage(){
     }
   }
 
+  const dataError = JSON.parse(localStorage.getItem('dataErrorModal'));
+  const dataCorrect = JSON.parse(localStorage.getItem('dataCorrectModal'));
+
+  function CloseAlert(){
+    localStorage.removeItem('dataErrorModal');
+    window.location.reload();
+  }
+
   return(
-  <h1>
+  <main id="pageContentCart">
+   {
+    dataError && <WindowAlert
+    heightAlertWindow="300px"
+    widthAlertWindow="400px"
+    CloseAlert={CloseAlert}
+    >
+      {dataError.message  || dataCorrect.data.outcome["merchant_message"]}
+      {}
+    </WindowAlert>
+   }
     <StyldHeader>
       <TitleSection>
         Carrito de Compras
@@ -89,6 +109,6 @@ export function CartPage(){
       {Section()}
     </ContainerCart>
     <ComponentFooter/>
-  </h1>
+  </main>
   )
 }

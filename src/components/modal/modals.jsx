@@ -7,12 +7,9 @@ export function WindowAlert({
   borderRadius,
   padding,
   children,
-  desactive
+  CloseAlert
 }) {
 
-  function CloseAlert(){
-    desactive(false);
-  }
   return (
     <BackgroundAlertWindow>
       <AlertWindow
@@ -53,6 +50,7 @@ const AlertWindow = styled.div`
   width: ${(props) => props.width || "600px"};
   height: ${(props) => props.height || "600px"};
   color: black;
+  font-weight: bold;
   background-color: white;
   border-radius: ${(prop) => prop.borderRadius || "20px"};
   position: relative;
@@ -61,5 +59,4 @@ const AlertWindow = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   /* align-items: flex-start; */
-
 `;
